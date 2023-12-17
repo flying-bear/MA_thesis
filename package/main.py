@@ -6,6 +6,8 @@ import spacy
 
 from datetime import datetime
 from functools import cached_property
+
+from tqdm import tqdm
 from transformers import AutoModel, AutoTokenizer
 from transformers import BertTokenizer, BertForNextSentencePrediction
 from typing import Iterable
@@ -49,6 +51,8 @@ def idf_sent_vectors(words: List[str], vectors: List[np.array], lang='de') -> np
     assert len(words) > 0
     assert len(words) == len(vectors)
     weights = [word_frequency(w, lang=lang) for w in words]
+    if sum(weights) == 0:  # all words are OOV for wordfreq
+        return np.average(vectors, axis=0)
     return np.average(vectors, axis=0, weights=weights)
 
 
@@ -327,23 +331,18 @@ def create_layered_df_for_nan() -> pd.DataFrame:
     return empty_df
 
 
-def main():
-    df = pd.read_csv('/Users/galina.ryazanskaya/Downloads/thesis?/code?/split_questions_cp_0.tsv', sep='\t',
-                     index_col=0).dropna()
-    config_de = Config(lang='de')
-
-
+def process_dataframe(df: pd.DataFrame, config: Config, not_average: Optional[List[str]] = None) -> pd.DataFrame:
     start = datetime.now()
     for_pd = []
-    for index, row in df.iterrows():
+    for index, row in tqdm(df.iterrows(), total=len(df)):
         task_values = {}
         to_average = []
         for k, w in row.items():
             if pd.isnull(w):
                 v_df = create_layered_df_for_nan()
             else:
-                v = ProcessTextData(TextData(text=w, config=config_de)).values
-                if k != 'preprocessed_transcript':
+                v = ProcessTextData(TextData(text=w, config=config)).values
+                if not_average and v not in not_average:
                     to_average.append(v)
                 v_df = dict_to_layered_pd(v)
             task_values[k] = v_df
@@ -352,20 +351,18 @@ def main():
         for_pd.append(task_df)
     new_df = pd.concat(for_pd, axis=0)
     new_df.index = df.index
+    print('total time for non-pipe + pd:', datetime.now() - start)
+    return new_df
 
-    with open('NET_NAP_new_try.tsv', 'w') as f:
+
+def main():
+    df = pd.read_csv('/Users/galina.ryazanskaya/Downloads/thesis?/code?/transcript_lex_by_task_with_dots.tsv', sep='\t',
+                     index_col=0)
+    config_ru = Config(lang='ru')
+    new_df = process_dataframe(df, config_ru)
+
+    with open('rus.tsv', 'w') as f:
         f.write(new_df.to_csv(sep='\t'))
-
-    # for_pd = []
-    # for index, w in df['preprocessed_transcript'].items():
-    #     v = ProcessTextData(TextData(text=w, config=config_de)).values
-    #     for_pd.append(values_to_flat_dict(v, index=index))
-    # new_df = pd.DataFrame(for_pd)
-    #
-    # with open('NET_NAP_new_graph_limit100_entire.tsv', 'w') as f:
-    #     f.write(new_df.to_csv(sep='\t'))
-
-    print('time for non-pipe + pd:', datetime.now() - start)
 
 
 if __name__ == '__main__':

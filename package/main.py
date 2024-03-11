@@ -113,7 +113,7 @@ class TextData:
             sent_vectors = []
             sent_word_for_vectors = []
             for token in sent:
-                if stopwords and token.text in stopwords:
+                if stopwords and token.text.lower() in stopwords:
                     continue
                 self.words.append(token.text)
                 self.lemmas.append(token.lemma_)
@@ -289,6 +289,8 @@ class ProcessTextData:
 
 
 def average_values(list_of_values_dicts: List[Dict[str, Dict[str, float]]]) -> Dict[str, Dict[str, float]]:
+    if not list_of_values_dicts:
+        return {}
     new_val = {metric_type: {metric_name: [] for metric_name in metric_dict.keys()}
                for metric_type, metric_dict in list_of_values_dicts[0].items()}
     for values in list_of_values_dicts:
@@ -298,7 +300,7 @@ def average_values(list_of_values_dicts: List[Dict[str, Dict[str, float]]]) -> D
                     new_val[metric_type][metric_name] = [metric_value]
                 new_val[metric_type][metric_name].append(metric_value)
 
-    return {metric_type: {metric_name: np.mean(metric_values) for metric_name, metric_values in metric_dict.items()}
+    return {metric_type: {metric_name: np.nanmean(metric_values) for metric_name, metric_values in metric_dict.items()}
             for metric_type, metric_dict in new_val.items()}
 
 
@@ -341,27 +343,45 @@ def process_dataframe(df: pd.DataFrame, config: Config, not_average: Optional[Li
             if pd.isnull(w):
                 v_df = create_layered_df_for_nan()
             else:
-                v = ProcessTextData(TextData(text=w, config=config)).values
-                if not_average and v not in not_average:
+                d = ProcessTextData(TextData(text=w, config=config))
+                v = d.values
+                if not_average and k not in not_average:
                     to_average.append(v)
                 v_df = dict_to_layered_pd(v)
             task_values[k] = v_df
-        task_values['averaged'] = dict_to_layered_pd(average_values(to_average))
+        task_values[' averaged'] = dict_to_layered_pd(average_values(to_average))
         task_df = pd.concat(task_values.values(), keys=task_values.keys(), names=["TASK"], axis=1)
         for_pd.append(task_df)
     new_df = pd.concat(for_pd, axis=0)
     new_df.index = df.index
-    print('total time for non-pipe + pd:', datetime.now() - start)
+    new_df.dropna(axis=1, how='all', inplace=True)
+    new_df.sort_index(axis=1, level=[0, 1], inplace=True)
+    new_df = new_df.rename(columns={' averaged': 'averaged'})
+    print('total time:', datetime.now() - start)
     return new_df
 
 
 def main():
-    df = pd.read_csv('/Users/galina.ryazanskaya/Downloads/thesis?/code?/transcript_lex_by_task_with_dots.tsv', sep='\t',
-                     index_col=0)
-    config_ru = Config(lang='ru')
-    new_df = process_dataframe(df, config_ru)
+    pth = '/Users/galina.ryazanskaya/Downloads/thesis?/code?/'
+    df = pd.read_csv(pth + 'rus_transcript_lex_by_task_with_dots.tsv', sep='\t', index_col=0)
+    config = Config(lang='ru', stopwords=[])
+    new_df = process_dataframe(df, config)  #, not_average=['preprocessed_transcript'])
 
-    with open('rus.tsv', 'w') as f:
+    with open(pth + 'processed_values/ru_both.tsv', 'w') as f:
+        f.write(new_df.to_csv(sep='\t'))
+
+    df = pd.read_csv(pth + 'de_split_questions_cp_HC.tsv',sep='\t', index_col=0)
+    config = Config(lang='de', stopwords=[])
+    new_df = process_dataframe(df, config, not_average=['preprocessed_transcript'])
+
+    with open(pth + 'processed_values/de_HC.tsv', 'w') as f:
+        f.write(new_df.to_csv(sep='\t'))
+
+    df = pd.read_csv(pth + 'de_split_questions_cp_0.tsv', sep='\t', index_col=0)
+    config = Config(lang='de', stopwords=[])
+    new_df = process_dataframe(df, config, not_average=['preprocessed_transcript'])
+
+    with open(pth + 'processed_values/de_patients.tsv', 'w') as f:
         f.write(new_df.to_csv(sep='\t'))
 
 

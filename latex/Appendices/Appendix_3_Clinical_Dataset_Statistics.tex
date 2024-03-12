@@ -1,0 +1,74 @@
+\chapter{Clinical Data} % Main appendix title
+\label{appendix:clincal_data} % For referencing this appendix elsewhere, use \ref{AppendixA}
+
+\begin{table}[h!]
+\begin{center}
+\begin{tabular}{llllll}
+\hline
+    &     & \textbf{N} & \textbf{female} & \textbf{age}  & \textbf{edu\_years} \\ \hline
+NAP &     & 31         & 25              & 27.13 (7.14)  & 13.32 (2.41)        \\
+Dep &     & 18         & 18              & 20.89 (3.71)  & 12.67 (1.94)        \\
+HC  & all & 127        & 89              & 40.42 (19.15) & 15.55 (2.54)        \\
+    & psy & 41         & 31              & 27.62 (11.16) & 15.05 (2.07)        \\ \hline
+\end{tabular}
+\captionsetup{width=\textwidth}
+\caption[Full Russian Clinical Dataset.]{\label{tab:data:ru:full_sample} Social statistics of the full Russian clinical dataset including the participants doing other tasks than the for selected. Standard deviation is provided in parenthesis for each mean value. ``edu\_years'' indicates years of education. ``Dep'' is the sample wit predominantly depressive symptoms. ``HC psy'' stands for the subset of the healthy patients for which a clinical impression and psychiatric assessment is available.}
+\end{center}
+\end{table}
+
+\begin{table}[h]
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lllllllllllll}
+\hline
+\textbf{} & \textbf{sex} & \textbf{N} & \textbf{age}                      & \textbf{edu\_years}              & \textbf{Dep} & \textbf{TD} & \textbf{P\_N} & \textbf{PANSS\_TD} & \textbf{PANSS} & \textbf{PANSS\_n} & \textbf{PANSS\_p} & \textbf{PANSS\_o} \\ \hline
+range       & & & & & & & &  4-28 & 30-210 & 7-49  & 7-49 & 16-112  \\ \hline
+NAP       & all          & 31         & 27.13 (7.14)                      & 13.32 (2.41)                     & 0.58 (0.85)           & 0.84 (0.73)          & 29                        & 10.03 (3.74)       & 69.79 (16.13)  & 22.93 (8.59)        & 15.90 (4.92)        & 30.97 (8.42)      \\ \hline
+          & f       & 25         & 27.80 (7.53)                       & 13.56 (2.48)                     & 0.72 (0.89)           & 0.8 (0.76)           & 23                        & 9.43 (3.62)        & 69.13 (15.38)  & 22.52 (7.79)        & 15.3 (4.91)         & 31.3 (9.08)       \\
+          & m         & 6          & 24.33 (4.72)                      & 12.33 (1.97)                     & 0.0 (0.0)             & 1.0 (0.63)           & 6                         & 12.33 (3.56)       & 72.33 (20.16)  & 24.5 (11.93)        & 18.17 (4.67)        & 29.67 (5.65)      \\ \hline
+Dep       & female       & 18         & 20.89 (3.71)                      & 12.67 (1.94)                     & 0.56 (0.62)           & 0.06 (0.24)          & 13                        & 4.42 (0.9)         & 37.92 (5.89)   & 8.31 (1.97)         & 8.46 (1.94)         & 21.15 (3.58)      \\ \hline
+HC  & all          & 41         & 27.62 (11.16)                     & 15.05 (2.07)                     & 0.0                   & 0.0                  & 22                        & 4.36 (1.0)         & 30.77 (1.54)   & 7.23 (0.53)         & 7.23 (0.61)         & 16.32 (0.95)      \\ \hline
+          & f       & 31         & 27.19 (10.59) & 15.23 (1.67) & 0.0                   & 0.0                  & 20                        & 4.4 (1.05)         & 30.85 (1.6)    & 7.25 (0.55)         & 7.25 (0.64)         & 16.35 (0.99)      \\
+          & m         & 10         & 29.11 (13.57)                     & 14.5 (3.06)                      & 0.0                   & 0.0                  & 2                         & 4.0 (0.0)          & 30.0 (0.0)     & 7.0 (0.0)           & 7.0 (0.0)           & 16.0 (0.0)        \\ \hline
+\end{tabular}
+}
+\captionsetup{width=\textwidth}
+\caption[Full Russian Clinical Dataset: Psychiatric Scores]{\label{tab:data:ru:full_sample:psy} Clinical statistics of the psychiatric sample in the Russian clinical dataset including the participants doing other tasks than the for selected. Standard deviation is provided in parenthesis for each mean value. The range is provided for the possible values of the psychiatric scales. \\ ``HC'' only refers to the subset of the healthy patients for which a clinical impression and psychiatric assessment is available. ``f'' stands for female; ``m'' for male. ``edu\_years'' indicates years of education; ``Dep'' indicates clinical impression of depression severity varying from 0 to 3; ``TD'' indicates clinical impression of thought disorder severity varying from 0 to 3; ``P\_N'' indicates the number of participants for whom PANSS scores are available, ``PANSS\_td'' stands for the sum for PANSS questions related to formal thought disorder, ``PANSS\_neg'' stands for the negative PANSS sub-scale, ``PANSS\_pos'' for the positive sub-scale, and ``PANSS\_o'' for the general psychopathology sub-scale.}
+\end{table}
+
+\begin{table}[h!]
+\begin{center}
+\begin{tabular}{llll}
+\hline
+\textbf{} & \textbf{code} & \textbf{diagnosis}                                & \textbf{N} \\ \hline
+NAP       & F20           & schizophrenia                                     & 20         \\
+          & F25           & schizoaffective.disorder                          & 8          \\
+          & F21           & schizotypal.disorder                              & 2          \\
+          & F21.3         & schizotypal.disorder.pseudoneurotic.schizophrenia & 1          \\ \hline
+Dep       & F31           & bipolar.affective.disorder                        & 6          \\
+          & F60.31        & borderline.personality.disorder                   & 3          \\
+          & F31.4         & bipolar.affective.disorder.severe                 & 2          \\
+          & F31.5         & bipolar.affective.disorder.severe.psychotic       & 2          \\
+          & F33           & recurrent.depressive.disorder                     & 2          \\
+          & F32.1         & depressive.episode.moderate                       & 1          \\
+          & F33.3         & recurrent.depressive.disorder.severe.psychotic    & 1          \\
+          & F60           & personality.disorder                              & 1          \\ \hline
+\end{tabular}
+\captionsetup{width=\textwidth}
+\caption[Russian Clinical Dataset: Diagnosis]{\label{tab:data:ru:sample:diagnosis} Diagnosis frequencies in the clinical samples.}
+\end{center}
+\end{table}
+
+\begin{table}[h!]
+\begin{center}
+\begin{tabular}{lllllll}
+\hline
+    &     & adventure & chair & present & sportsman & table & bench & party & trip & winterday \\ \hline
+NAP &     & 30        & 17    & 21      & 28        & 0     & 0     & 0     & 1    & 0         \\
+Dep &     & 14        & 14    & 13      & 14        & 0     & 0     & 0     & 0    & 0         \\
+HC  & all & 55        & 44    & 47      & 54        & 30    & 28    & 35    & 39   & 40        \\
+    & psy & 25        & 16    & 19      & 26        & 0     & 0     & 7     & 9    & 12        \\ \hline
+\end{tabular}
+\captionsetup{width=\textwidth}
+\caption[Russian Clinical Dataset: Task Availability]{\label{tab:data:ru:full_sample:tasks} Task availability for all tasks in Russian clinical dataset. ``Dep'' is the sample wit predominantly depressive symptoms. ``HC psy'' stands for the subset of the healthy patients for which a clinical impression and psychiatric assessment is available.}
+\end{center}
+\end{table}

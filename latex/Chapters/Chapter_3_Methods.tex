@@ -1,0 +1,204 @@
+% Chapter Template
+
+\chapter{Methods} % Main chapter title
+
+\label{chap:3:methods} % Change X to a consecutive number; for referencing this chapter elsewhere, use \ref{ChapterX}
+
+
+%----------------------------------------------------------------------------------------
+%	SECTION 1
+%----------------------------------------------------------------------------------------
+\section{Data}
+\label{sec:methods:data}
+
+
+%-----------------------------------
+%	SUBSECTION 1
+%-----------------------------------
+\subsection{General Data Structure}
+\label{sec:methods:data:structure}
+
+\textcolor{red}{
+\begin{itemize}
+    \item Clinical Data (Including Control)
+    \item Spoken Semi-Spontaneous Monologue Corpora
+    \item Written Internet Corpora
+\end{itemize}
+}
+
+
+%-----------------------------------
+%	SUBSECTION 2
+%-----------------------------------
+\subsection{German}
+\label{sec:methods:data:german}
+
+\subsubsection{Clinical Data}
+
+\textcolor{red}{NET task description}
+\textcolor{red}{\cite{just2023validation}}
+
+\textcolor{red}{We used the Narrative of Emotions Task (NET, \cite{buck2014net}) to collect speech samples, a short semi-structured interview, originally developed to assess social cognition, at T1. We used a short version of the NET, translated into German, including three questions about four basic emotions: sadness, fear, anger, and happiness: (1) What does this emotion mean to you? (2) Describe a situation where you felt this emotion, and (3) Why do you think you felt this emotion in this situation? All interviews were conducted by trained clinicians, recorded, and manually transcribed, following defined rules for transcription and sentence segmentation. Collecting speech samples from answers to (semi-)structured questions is a frequently used method in NLP studies, increases comparability, and has been shown to outperform analysis of free conversational speech \citep{morgan2021natural}.}
+
+\textcolor{red}{Uniform sentence annotation guidelines were established for manual coding of sentence boundaries based on syntax, as has been done elsewhere. Clear annotation guidelines for sentence separation are crucial as automated coherence metrics are calculated over sentences and thus, can be influenced by sentence boundary decisions. A sentence was defined as at least containing a subject and verb (e.g., “John eats.”). The main and the corresponding side clauses were grouped together as one sentence (e.g., “John eats when he is hungry.”). Incomplete main clauses were ended on a period (“John eats when. No, I wanted to say something else.”), main clauses connected by conjunction were separated (“John eats when he is hungry. And he laughs when he is happy. And he sleeps when he is tired.”)}
+
+\begin{table}[h!]
+\begin{center}
+\begin{tabular}{lllll}
+\hline
+& \textbf{N} & \textbf{female} & \textbf{age} & \textbf{edu\_years} \\ 
+\hline
+NAP & 59         & 24              & 39.5 (11.1)  & 14.6 (3.0)               \\
+HC  & 20         & 9               & 43.85 (13.3) & 15.5 (2.8)               \\ 
+\hline
+\end{tabular}
+\captionsetup{width=\textwidth}
+\caption[German Clinical Dataset.]{\label{tab:data:de:sample} Social statistics of the German clinical dataset. Standard deviation is provided in parenthesis for each mean value. ``edu\_years'' indicates years of education.}
+\end{center}
+\end{table}
+
+\textcolor{red}{no diff in age or education years between groups}
+
+
+\begin{table}[h]
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lllllllllll}
+\hline
+\textbf{} & \textbf{N} & \textbf{age} & \textbf{edu\_years} & \textbf{IQ}  & \textbf{SANS} & \textbf{SAPS} & \textbf{PANSS} & \textbf{PANSS\_n} & \textbf{PANSS\_p} & \textbf{PANSS\_o} \\ \hline
+range &&&&& 0-120 & 0-170 & 30-210 & 7-49  & 7-49 & 16-112  \\ \hline
+all     & 59         & 39.5 (11.1)  & 14.6 (3.0)               & 105.2 (15.7) & 27.7 (20.4)   & 16.8 (16.7)   & 57.3 (16.2)    & 16.9 (6.0)          & 12.7 (5.5)          & 27.8 (7.5)        \\ \hline
+male      & 35         & 37.3 (10.1)  & 14.5 (3.1)               & 107.0 (12.7) & 28.6 (21.2)   & 18.6 (16.7)   & 59.2 (17.0)    & 17.1 (6.6)          & 13.4 (5.6)          & 28.6 (7.6)        \\
+female    & 24         & 42.7 (11.9)   & 14.7(2.8)                & 102.4 (19.3) & 26.4 (19.4)   & 14.2 (16.7)   & 54.5 (14.8)    & 16.4 (5.2)          & 11.6 (5.2)          & 26.5 (7.3)        \\ \hline
+\end{tabular}
+}
+\captionsetup{width=\textwidth}
+\caption[German Clinical Dataset: Psychiatric Scores]{\label{tab:data:de:sample:psy} Clinical statistics of the psychiatric sample in the German clinical dataset. Standard deviation is provided in parenthesis for each mean value. The range is provided for the possible values of the psychiatric scales. \\ ``edu\_years'' indicates years of education, ``PANSS\_n'' stands for the negative PANSS sub-scale, ``PANSS\_p'' for the positive sub-scale, and ``PANSS\_o'' for the general psychopathology sub-scale.}
+\end{table}
+
+
+\textcolor{red}{no diff in age, education years, or clinical scales between sexes}
+
+\textcolor{red}{no diff in metrics between sexes}
+
+
+\textcolor{red}{age + VERB use (r=0.32); education years + std sent len (r=0.36), max sent len (r=0.31), graph LSC (r=0.31), graph NN (r=0.31), graph LCC (r=0.31); education years - min sent len (r=-0.32), m cgcoh bert=(r=-0.32); IQ - INTJ (r=-0.43), NUM (r=-0.39), m sprob (r=-0.31)}
+
+\textcolor{red}{all corr w control variables are rather weak - no control for them}
+
+
+
+
+\subsubsection{Spoken Corpus Data}
+\textcolor{red}{DGD}
+
+\subsubsection{Web Corpus Data}
+\textcolor{red}{Wiki?}
+
+
+%-----------------------------------
+%	SUBSECTION 3
+%-----------------------------------
+
+\subsection{Russian}
+\label{sec:methods:data:russian}
+
+\textcolor{red}{WHO WAS EXCLUDED AND WHY AND APPENDIX}
+
+\subsubsection{Clinical Data}
+\begin{table}[h!]
+\begin{center}
+\begin{tabular}{llllll}
+\hline
+    &     & \textbf{N} & \textbf{female} & \textbf{age}  & \textbf{edu\_years} \\ \hline
+NAP &     & 31         & 25              & 27.13 (7.14)  & 13.32 (2.41)        \\
+Dep &     & 18         & 18              & 20.89 (3.71)  & 12.67 (1.94)        \\
+HC  & all & 102 & 75     & 39.75 (19.15) & 15.74 (2.57) \\
+    & psy & 30  & 26     & 25.0 (7.4)    & 15.43 (2.13)        \\ \hline
+\end{tabular}
+\captionsetup{width=\textwidth}
+\caption[Russian Clinical Dataset.]{\label{tab:data:ru:sample} Social statistics of the Russian clinical dataset (only including the participants doing the selected tasks). Standard deviation is provided in parenthesis for each mean value. ``edu\_years'' indicates years of education. ``Dep'' is the sample wit predominantly depressive symptoms. ``HC psy'' stands for the subset of the healthy patients for which a clinical impression and psychiatric assessment is available.}
+\end{center}
+\end{table}
+
+\begin{table}[h]
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lllllllllllll}
+\hline
+\textbf{} & \textbf{sex} & \textbf{N} & \textbf{age}                      & \textbf{edu\_years}              & \textbf{Dep} & \textbf{TD} & \textbf{P\_N} & \textbf{PANSS\_TD} & \textbf{PANSS} & \textbf{PANSS\_n} & \textbf{PANSS\_p} & \textbf{PANSS\_o} \\ \hline
+range       & & & & & & & &  4-28 & 30-210 & 7-49  & 7-49 & 16-112  \\ \hline
+NAP       & all          & 31         & 27.13 (7.14)                      & 13.32 (2.41)                     & 0.58 (0.85)           & 0.84 (0.73)          & 29                        & 10.03 (3.74)       & 69.79 (16.13)  & 22.93 (8.59)        & 15.90 (4.92)        & 30.97 (8.42)      \\ \hline
+          & f       & 25         & 27.80 (7.53)                       & 13.56 (2.48)                     & 0.72 (0.89)           & 0.8 (0.76)           & 23                        & 9.43 (3.62)        & 69.13 (15.38)  & 22.52 (7.79)        & 15.3 (4.91)         & 31.3 (9.08)       \\
+          & m         & 6          & 24.33 (4.72)                      & 12.33 (1.97)                     & 0.0 (0.0)             & 1.0 (0.63)           & 6                         & 12.33 (3.56)       & 72.33 (20.16)  & 24.5 (11.93)        & 18.17 (4.67)        & 29.67 (5.65)      \\ \hline
+Dep       & female       & 18         & 20.89 (3.71)                      & 12.67 (1.94)                     & 0.56 (0.62)           & 0.06 (0.24)          & 13                        & 4.42 (0.9)         & 37.92 (5.89)   & 8.31 (1.97)         & 8.46 (1.94)         & 21.15 (3.58)      \\ \hline
+HC & all    & 30 & 25.0 (7.4)   & 15.43 (2.13) & 0.0 (0.0)   & 0.0 (0.0)   & 22   & 4.36 (1.0)   & 30.77 (1.54)  & 7.23 (0.53)  & 7.23 (0.61)  & 16.32 (0.95) \\ \hline
+         & female & 26 & 25.42 (7.8)  & 15.42 (1.7)  & 0.0 (0.0)   & 0.0 (0.0)   & 20   & 4.4 (1.05)   & 30.85 (1.6)   & 7.25 (0.55)  & 7.25 (0.64)  & 16.35 (0.99) \\
+         & male   & 4  & 22.25 (3.3)  & 15.5 (4.43)  & 0.0 (0.0)   & 0.0 (0.0)   & 2    & 4.0 (0.0)    & 30.0 (0.0)    & 7.0 (0.0)    & 7.0 (0.0)    & 16.0 (0.0)  \\ \hline
+\end{tabular}
+}
+\captionsetup{width=\textwidth}
+\caption[Russian Clinical Dataset: Psychiatric Scores]{\label{tab:data:ru:sample:psy} Clinical statistics of the psychiatric sample in the Russian clinical dataset (only including the participants doing the selected tasks). ``HC'' only refers to the subset of the healthy patients for which a clinical impression and psychiatric assessment is available. Standard deviation is provided in parenthesis for each mean value. The range is provided for the possible values of the psychiatric scales. \\ ``f'' stands for female; ``m'' for male. ``edu\_years'' indicates years of education; ``Dep'' column indicates clinical impression of depression severity varying from 0 to 3; ``TD'' column indicates clinical impression of thought disorder severity varying from 0 to 3; ``P\_N'' indicates the number of participants for whom PANSS scores are available, ``PANSS\_td'' stands for the sum for PANSS questions related to formal thought disorder, ``PANSS\_neg'' stands for the negative PANSS sub-scale, ``PANSS\_pos'' for the positive sub-scale, and ``PANSS\_o'' for the general psychopathology sub-scale.}
+\end{table}
+
+\textcolor{red}{task description}
+\textcolor{red}{additional task description in appendix}
+
+\begin{table}[h!]
+\begin{center}
+\begin{tabular}{lllllll}
+\hline
+    &     & N   & adventure & chair & present & sportsman \\ \hline
+NAP &     & 31  & 30        & 17    & 21      & 28        \\
+Dep &     & 18  & 14        & 14    & 13      & 14        \\
+HC  & all & 102 & 55        & 44    & 47      & 54        \\
+    & psy & 30  & 25        & 16    & 19      & 26        \\ \hline
+\end{tabular}
+\captionsetup{width=\textwidth}
+\caption[Russian Clinical Dataset: Task Availability]{\label{tab:data:ru:sample:tasks} Task availability for each selected task in Russian clinical dataset. ``Dep'' is the sample wit predominantly depressive symptoms. ``HC psy'' stands for the subset of the healthy patients for which a clinical impression and psychiatric assessment is available.}
+\end{center}
+\end{table}
+
+\subsubsection{Spoken Corpus Data}
+\textcolor{red}{RusCorpora}
+
+\subsubsection{Web Corpus Data}
+\textcolor{red}{Wiki?}
+
+
+
+
+%----------------------------------------------------------------------------------------
+%	SECTION 2
+%----------------------------------------------------------------------------------------
+\section{Processing}
+\label{sec:methods:processing}
+
+
+%-----------------------------------
+%	SUBSECTION 1
+%-----------------------------------
+\subsection{Metric Pool}
+\label{sec:methods:processing:metrics}
+\textcolor{red}{selected metrics, used models}
+
+%-----------------------------------
+%	SUBSECTION 2
+%-----------------------------------
+\subsection{Clinical Data Processing}
+\label{sec:methods:processing:clinical}
+\textcolor{red}{preprocessing, per task application, nan averaging}
+
+%-----------------------------------
+%	SUBSECTION 3
+%-----------------------------------
+\subsection{Corpus Data Processing}
+\label{sec:methods:processing:corpus}
+\textcolor{red}{preprocessing, application, nan averaging}
+
+
+%----------------------------------------------------------------------------------------
+%	SECTION 3
+%----------------------------------------------------------------------------------------
+\section{Analysis}
+\label{sec:methods:analysis}
+
+\textcolor{red}{statistical analysis of the clinical and corpora data}

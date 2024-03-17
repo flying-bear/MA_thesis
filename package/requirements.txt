@@ -1,0 +1,11 @@
+attrs
+numpy
+networkx
+pandas
+torch
+nltk
+spacy
+scipy
+tqdm
+wordfreq
+transformers

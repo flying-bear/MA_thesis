@@ -1,8 +1,8 @@
 import attr
 import pandas as pd
-import numpy as np
 import nltk
 import spacy
+import numpy as np
 
 from datetime import datetime
 from functools import cached_property
@@ -13,16 +13,19 @@ from transformers import BertTokenizer, BertForNextSentencePrediction
 from typing import Iterable
 from wordfreq import word_frequency
 
-
 from graph import *
 from lms import *
 from lex import *
 from synt import *
 
 # global
-# nltk.download('punkt')
-# nltk.download('averaged_perceptron_tagger')
-# nltk.download('stopwords')
+nltk.download('punkt')
+nltk.download('averaged_perceptron_tagger')
+nltk.download('stopwords')
+
+for model_name in ("de_core_news_md", "ru_core_news_md"):
+    if not spacy.util.is_package(model_name):
+        spacy.cli.download(model_name)
 
 nlp_de = spacy.load("de_core_news_md")
 nlp_ru = spacy.load("ru_core_news_md")
@@ -54,6 +57,11 @@ def idf_sent_vectors(words: List[str], vectors: List[np.array], lang='de') -> np
     if sum(weights) == 0:  # all words are OOV for wordfreq
         return np.average(vectors, axis=0)
     return np.average(vectors, axis=0, weights=weights)
+
+
+def average_vectors(vectors: List[np.array]) -> np.array:
+    assert len(vectors) > 0
+    return np.mean(vectors, axis=0)
 
 
 @attr.s(auto_attribs=True)
@@ -102,6 +110,7 @@ class TextData:
         self.build_with_spacy(self.text)
         self.sent_vectors = [idf_sent_vectors(words, vectors, lang=self.config.lang) for
                              words, vectors in zip(self.sent_word_for_vectors, self.sent_word_vectors)]
+        self.raw_sent_vectors = [average_vectors(vectors) for vectors in self.sent_word_vectors]
 
     def build_with_spacy(self, text: str):
         stopwords = [] if self.config.stopwords is None else self.config.stopwords
@@ -178,11 +187,11 @@ class ProcessTextData:
         return self.sentence_stats['std_sent_len']
 
     @cached_property
-    def min_sent_words(self) -> int:
+    def min_sent_words(self) -> float:
         return self.sentence_stats['min_sent_len']
 
     @cached_property
-    def max_sent_words(self) -> int:
+    def max_sent_words(self) -> float:
         return self.sentence_stats['max_sent_len']
 
     @cached_property
@@ -232,7 +241,11 @@ class ProcessTextData:
                 'm_bert_lcoh': np.mean(self.local_coherence_list(model='bert')),
                 'm_bert_gcoh': np.mean(self.global_coherence_list(model='bert')),
                 'm_bert_cgcoh': np.mean(self.cumulative_global_coherence_list(model='bert')),
-                'm_bert_scoh': np.mean(self.second_order_coherence_list(model='bert'))
+                'm_bert_scoh': np.mean(self.second_order_coherence_list(model='bert')),
+                'm_raw_lcoh': np.mean(self.local_coherence_list(model='raw')),
+                'm_raw_gcoh': np.mean(self.global_coherence_list(model='raw')),
+                'm_raw_cgcoh': np.mean(self.cumulative_global_coherence_list(model='raw')),
+                'm_raw_scoh': np.mean(self.second_order_coherence_list(model='raw'))
                 }
 
     # lexical
@@ -260,6 +273,8 @@ class ProcessTextData:
     def sent_vectors(self, model: Optional[str] = 'default') -> List[np.array]:
         if model == 'bert':
             return self.bert_sent_vectors
+        elif model == 'raw':
+            return self.data.raw_sent_vectors
         else:
             return self.data.sent_vectors
 

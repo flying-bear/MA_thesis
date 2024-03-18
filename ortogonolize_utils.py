@@ -67,7 +67,7 @@ def compute_coefficient(df, target_col, test_col, column_names=None, target_name
 
     # add intercept
     X = sm.add_constant(X)
-    model = sm.OLS(y, X).fit()
+    model = sm.OLS(y, X).fit(disp=0)
 
     return model.rsquared, X
 
@@ -83,10 +83,10 @@ def compute_ortogonolized_coefficient(df, target_col, control_col, test_col, col
     # perform QR decomposition and rescale
     Q, R = np.linalg.qr(X)
     Z = Q * np.diag(R) + X.mean(axis=0).to_numpy()[None, :]
-    Z_fit = Z[:, [0, 3]] if add_sq else Z[:, [0, 2]]
+    Z_fit = Z[:, [0, -1]]
     Z_fit = pd.DataFrame(Z_fit, columns=[X.columns[0], X.columns[-1]], index=X.index)
 
-    model = sm.OLS(y, Z_fit).fit()
+    model = sm.OLS(y, Z_fit).fit(disp=0)
 
     return model.rsquared, pd.DataFrame(Z, columns=X.columns, index=X.index)
 
@@ -102,7 +102,7 @@ def compute_ortogonolized_logit(df, target_col, control_col, test_col, column_na
     Z = Q * np.diag(R)  # + X.mean(axis=0).to_numpy()[None, :]
     Z = pd.DataFrame(Z, columns=X.columns, index=X.index)
 
-    model = sm.Logit(y, Z).fit()
+    model = sm.Logit(y, Z).fit(disp=0)
 
     return model.prsquared
 

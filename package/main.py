@@ -237,7 +237,7 @@ class ProcessTextData:
                 'm_gcoh': self.mean_gcoh,
                 'm_cgcoh': self.mean_cgcoh,
                 'm_scoh': self.mean_scoh,
-                'm_sporb': self.mean_sent_prob,
+                'm_sprob': self.mean_sent_prob,
                 'm_bert_lcoh': np.mean(self.local_coherence_list(model='bert')),
                 'm_bert_gcoh': np.mean(self.global_coherence_list(model='bert')),
                 'm_bert_cgcoh': np.mean(self.cumulative_global_coherence_list(model='bert')),

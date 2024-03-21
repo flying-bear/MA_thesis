@@ -94,7 +94,7 @@ CMAP.set_under("white")
 
 
 def style(df, vmin=None, vmax=None, cmap=CMAP):
-    return (df.style
+    return (df.apply(pd.to_numeric).style
             .background_gradient(vmin=vmin, vmax=vmax, cmap=cmap)
             .applymap(lambda x: color_nan_white(x))
             .applymap(lambda x: color_nan_white_background(x))
@@ -177,3 +177,112 @@ def show_corrtest_mask_corr(df, threshold=0.5):
     plt.ylim(b, t)  # update the ylim(bottom, top) values
     plt.show()
     return corr
+
+
+def add_grey(axes, r=0.3, line_dir='v', min_=100, max_=-100):
+    if not isinstance(axes, np.ndarray):
+        axes = np.array([axes])
+
+    min_left = min_
+    max_right = max_
+
+    for ax in axes.ravel():
+        if line_dir == 'v':
+            left, right = ax.get_xlim()
+        elif line_dir == 'h':
+            left, right = ax.get_ylim()
+        else:
+            raise ValueError('line_dir must be "v" or "h"')
+        left = 0 if left > 0 else left
+        right = 0 if right < 0 else right
+        min_left = left if min_left > left else min_left
+        max_right = right if max_right < right else max_right
+
+    for ax in axes.ravel():
+        left = -r if min_left < -r else min_left
+        right = r if max_right > r else max_right
+        if line_dir == 'v':
+            ax.axvspan(left, right, color='grey', alpha=0.15)
+            ax.axvline(x=0, color='darkgrey', linestyle='--')
+        elif line_dir == 'h':
+            ax.axhspan(left, right, color='grey', alpha=0.15)
+            ax.axhline(y=0, color='darkgrey', linestyle='--')
+
+
+def pointplot(data, x, y, hue, ax=None, use_errorbar=False, **kwargs):
+    sns.set_theme(style="whitegrid")
+    if not use_errorbar:
+        sns.pointplot(
+            data=data, x=x, y=y, hue=hue,
+            ax=ax, **kwargs)
+    else:
+        sns.pointplot(
+            data=data, x=x, y=y, hue=hue,
+            ax=ax, estimator='median', errorbar=('pi', 50), dodge=True,
+            err_kws={'alpha': 0.3}, capsize=.0, alpha=0.7, **kwargs)
+
+
+def pointplot_horizontal(df, x, ax, reorder_synt=True):
+    if reorder_synt:
+        ms = list(df['metric'].unique())
+        for s in ('syntactic: mean_sent_len', 'mean_sent_len'):
+            if s in ms:
+                ms.remove(s)
+                ms.append(s)
+        order = ms
+        hue_order = ms
+    else:
+        order = None
+        hue_order = None
+    sns.pointplot(
+        data=df, x=x, y="metric",
+        errorbar=("pi", 50), estimator='median', capsize=.0,
+        linestyle="none", hue="metric", palette='tab20' if len(df['metric'].unique()) >= 10 else 'tab10',
+        err_kws={'alpha': 0.3}, alpha=0.7, ax=ax, order=order, hue_order=hue_order)
+
+
+def prep_horizontal_pointplot_errobar_data(df, col, plot_abs=False):
+    r = np.concatenate(df[col].to_numpy())
+    if plot_abs:
+        r = map(abs, r)
+    idx = np.concatenate([[x]*len(df[col][x]) for x in df[col].index])
+    if len(idx.shape) > 1:
+        idx = list(map(lambda x: x[0] + ': ' + x[1], idx))
+    d = pd.DataFrame(data=r, columns=[col])
+    d['metric'] = idx
+    return d
+
+
+def map_model(m: str) -> str:
+    if 'bert' in m or 'sprob' in m or 'sporb' in m:
+        return 'bert'
+    elif 'raw' in m:
+        return 'w2v_raw'
+    else:
+        return 'w2v'
+
+
+def prep_LM_pointplot_data(df, plot_abs=False):
+    if plot_abs:
+        df = df.applymap(abs)
+    df['model'] = [map_model(m) for m in df.index]
+    df['metric'] = [x.split('_')[-1] for x in df.index]
+    return df
+
+
+def prep_LM_pointplot_errobar_data(df, col, plot_abs=False):
+    r = np.concatenate(df[col].to_numpy())
+    if plot_abs:
+        r = map(abs, r)
+    idx = np.concatenate([[x]*len(df[col][x]) for x in df[col].index])
+    d = pd.DataFrame(data=r, columns=[col])
+    d['model'] = list(map(map_model, idx))
+    d['metric'] = list(map(lambda x: x.split('_')[-1], idx))
+    return d
+
+
+def prep_LM_pointplot(df, col, plot_abs=False, use_errorbar=True):
+    if not use_errorbar:
+        return prep_LM_pointplot_data(df, plot_abs=plot_abs)
+    else:
+        return prep_LM_pointplot_errobar_data(df, col, plot_abs=plot_abs)

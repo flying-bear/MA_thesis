@@ -1,10 +1,13 @@
-import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
+import pandas as pd
 import seaborn as sns
+import random
 
 from copy import copy
 from matplotlib.colors import ListedColormap
+from random import choices
+from scipy import stats
 
 
 def display_test(df, columns_to_test, target_column, test, nan_policy='omit', stat_name='x', alpha=0.05):
@@ -209,7 +212,7 @@ def add_grey(axes, r=0.3, line_dir='v', min_=100, max_=-100):
             ax.axhline(y=0, color='darkgrey', linestyle='--')
 
 
-def pointplot(data, x, y, hue, ax=None, use_errorbar=False, **kwargs):
+def pointplot(data, x, y, hue, ax=None, use_errorbar=False, estimator='median', errorbar=('pi', 50), **kwargs):
     sns.set_theme(style="whitegrid")
     if not use_errorbar:
         sns.pointplot(
@@ -218,27 +221,43 @@ def pointplot(data, x, y, hue, ax=None, use_errorbar=False, **kwargs):
     else:
         sns.pointplot(
             data=data, x=x, y=y, hue=hue,
-            ax=ax, estimator='median', errorbar=('pi', 50), dodge=True,
+            ax=ax, estimator=estimator, errorbar=errorbar, dodge=True,
             err_kws={'alpha': 0.3}, capsize=.0, alpha=0.7, **kwargs)
 
 
-def pointplot_horizontal(df, x, ax, reorder_synt=True):
+def reorder_synt_idx(df):
+    ms = sorted(list(df['metric'].unique()))
+    for s in ('syntactic: mean_sent_len', 'mean_sent_len'):
+        if s in ms:
+            ms.remove(s)
+            ms.append(s)
+    order = ms
+    hue_order = ms
+    return order, hue_order
+
+
+def pointplot_horizontal(df, x, ax, reorder_synt=True, estimator='median', errorbar=('pi', 50), **kwargs):
     if reorder_synt:
-        ms = list(df['metric'].unique())
-        for s in ('syntactic: mean_sent_len', 'mean_sent_len'):
-            if s in ms:
-                ms.remove(s)
-                ms.append(s)
-        order = ms
-        hue_order = ms
+        order, hue_order = reorder_synt_idx(df)
     else:
-        order = None
-        hue_order = None
+        order, hue_order = None, None
     sns.pointplot(
         data=df, x=x, y="metric",
-        errorbar=("pi", 50), estimator='median', capsize=.0,
+        errorbar=errorbar, estimator=estimator, capsize=.0,
         linestyle="none", hue="metric", palette='tab20' if len(df['metric'].unique()) >= 10 else 'tab10',
-        err_kws={'alpha': 0.3}, alpha=0.7, ax=ax, order=order, hue_order=hue_order)
+        err_kws={'alpha': 0.3}, alpha=0.7, ax=ax, order=order, hue_order=hue_order, **kwargs)
+
+
+def pointplot_horizontal_wo_errorbar(df, x, ax, reorder_synt=True, **kwargs):
+    if reorder_synt:
+        order, hue_order = reorder_synt_idx(df)
+    else:
+        order, hue_order = None, None
+    sns.pointplot(data=df, x=x, y="metric",
+                  linestyle="none", hue="metric",
+                  palette='tab20' if len(df['metric'].unique()) >= 10 else 'tab10',
+                  ax=ax, order=order, hue_order=hue_order, **kwargs)
+
 
 
 def prep_horizontal_pointplot_errobar_data(df, col, plot_abs=False):
@@ -286,3 +305,22 @@ def prep_LM_pointplot(df, col, plot_abs=False, use_errorbar=True):
         return prep_LM_pointplot_data(df, plot_abs=plot_abs)
     else:
         return prep_LM_pointplot_errobar_data(df, col, plot_abs=plot_abs)
+
+
+def draw_sample_with_replacement(df, seed=None):
+    if seed:
+        random.seed(seed)
+    length = len(df.index)
+    idxs = choices(range(length), k=length)
+    return df.iloc[idxs, :]
+
+
+def t_test(df, column, target_column, test=stats.ttest_ind, nan_policy='omit', stat_name='x', alpha=0.05,
+           group_names=None):
+    if group_names is None:
+        group_names = df[target_column].dropna().unique().tolist()
+        assert len(group_names) == 2, 'only two group tests are supported'
+
+    r, p = test(df[df[target_column] == group_names[1]][column],
+                df[df[target_column] == group_names[0]][column], nan_policy=nan_policy)
+    return r

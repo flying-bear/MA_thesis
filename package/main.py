@@ -8,8 +8,8 @@ from datetime import datetime
 from functools import cached_property
 
 from tqdm import tqdm
-from transformers import AutoModel, AutoTokenizer
-from transformers import BertTokenizer, BertForNextSentencePrediction
+from transformers import AutoModel
+from transformers import BertTokenizer, BertForNextSentencePrediction, BertForMaskedLM
 from typing import Iterable
 from wordfreq import word_frequency
 
@@ -28,22 +28,31 @@ for model_name in ("de_core_news_md", "ru_core_news_md"):
         spacy.cli.download(model_name)
 
 nlp_de = spacy.load("de_core_news_md")
+nlp_de_w2v = spacy.load("/Users/galina.ryazanskaya/Downloads/thesis?/w2v/de")
 nlp_ru = spacy.load("ru_core_news_md")
+nlp_ru_w2v = spacy.load("/Users/galina.ryazanskaya/Downloads/thesis?/w2v/ru")
 
 stopwords_de = nltk.corpus.stopwords.words("german")
 stopwords_ru = nltk.corpus.stopwords.words("russian")
 
+
+def load_bert_models(model_name):
+    with torch.no_grad():
+        model = AutoModel.from_pretrained(model_name)
+        tokenizer = BertTokenizer.from_pretrained(model_name)
+        model_nsp = BertForNextSentencePrediction.from_pretrained(model_name)
+        model_mlm = BertForMaskedLM.from_pretrained(model_name)
+        model.eval()
+        model_nsp.eval()
+        model_mlm.eval()
+    return tokenizer, model, model_nsp, model_mlm
+
+
 model_name_de = "bert-base-german-cased"
-model_de = AutoModel.from_pretrained(model_name_de)
-tokenizer_de = AutoTokenizer.from_pretrained(model_name_de)
-tokenizer_nsp_de = BertTokenizer.from_pretrained(model_name_de)
-model_nsp_de = BertForNextSentencePrediction.from_pretrained(model_name_de)
+tokenizer_de, model_de, model_nsp_de, model_mlm_de = load_bert_models(model_name_de)
 
 model_name_ru = "DeepPavlov/rubert-base-cased"
-model_ru = AutoModel.from_pretrained(model_name_ru)
-tokenizer_ru = AutoTokenizer.from_pretrained(model_name_ru)
-tokenizer_nsp_ru = BertTokenizer.from_pretrained(model_name_ru)
-model_nsp_ru = BertForNextSentencePrediction.from_pretrained(model_name_ru)
+tokenizer_ru, model_ru, model_nsp_ru, model_mlm_ru = load_bert_models(model_name_ru)
 
 
 def flatten(list_of_lists: List[List]) -> List:
@@ -76,16 +85,18 @@ class Config:
             self.stopwords = stopwords_de if self.lang == 'de' else stopwords_ru
         if self.lang == 'de':
             self.nlp = nlp_de
+            self.nlp_w2v = nlp_de_w2v
             self.bert_model = model_de
             self.bert_model_nsp = model_nsp_de
+            self.bert_model_mlm = model_mlm_de
             self.bert_tokenizer = tokenizer_de
-            self.bert_tokenizer_nsp = tokenizer_nsp_de
         elif self.lang == 'ru':
             self.nlp = nlp_ru
+            self.nlp_w2v = nlp_ru_w2v
             self.bert_model = model_ru
             self.bert_model_nsp = model_nsp_ru
+            self.bert_model_mlm = model_mlm_ru
             self.bert_tokenizer = tokenizer_ru
-            self.bert_tokenizer_nsp = tokenizer_nsp_ru
 
 
 @attr.s(auto_attribs=True)
@@ -101,9 +112,11 @@ class TextData:
 
     word_vectors: Optional[List[np.array]] = attr.ib(factory=list)
     word_for_vectors: Optional[List[str]] = attr.ib(factory=list)
+    word_vectors_w2v: Optional[List[np.array]] = attr.ib(factory=list)
 
     sent_word_vectors: Optional[List[List[np.array]]] = attr.ib(factory=list)
     sent_word_for_vectors: Optional[List[List[str]]] = attr.ib(factory=list)
+    sent_word_vectors_w2v: Optional[List[List[np.array]]] = attr.ib(factory=list)
     oov: Optional[List[str]] = attr.ib(factory=list)
 
     def __attrs_post_init__(self):
@@ -111,6 +124,9 @@ class TextData:
         self.sent_vectors = [idf_sent_vectors(words, vectors, lang=self.config.lang) for
                              words, vectors in zip(self.sent_word_for_vectors, self.sent_word_vectors)]
         self.raw_sent_vectors = [average_vectors(vectors) for vectors in self.sent_word_vectors]
+        self.sent_vectors_w2v = [idf_sent_vectors(words, vectors, lang=self.config.lang) for
+                                 words, vectors in zip(self.sent_word_for_vectors, self.sent_word_vectors_w2v)]
+        self.raw_sent_vectors_w2v = [average_vectors(vectors) for vectors in self.sent_word_vectors_w2v]
 
     def build_with_spacy(self, text: str):
         stopwords = [] if self.config.stopwords is None else self.config.stopwords
@@ -121,6 +137,7 @@ class TextData:
             sent_tokens = []
             sent_vectors = []
             sent_word_for_vectors = []
+            sent_vectors_w2v = []
             for token in sent:
                 if stopwords and token.text.lower() in stopwords:
                     continue
@@ -132,15 +149,19 @@ class TextData:
                     if token.is_oov:
                         self.oov.append(token.text)
                     else:
+                        w2v_vec = self.config.nlp_w2v(token.text).vector
                         sent_vectors.append(token.vector)
                         sent_word_for_vectors.append(token.text)
+                        sent_vectors_w2v.append(w2v_vec)
                         self.word_vectors.append(token.vector)
                         self.word_for_vectors.append(token.text)
+                        self.word_vectors_w2v.append(w2v_vec)
                 sent_tokens.append(token.text)
             if sent_vectors:
                 # filter out empty sentences
                 self.sent_word_vectors.append(sent_vectors)
                 self.sent_word_for_vectors.append(sent_word_for_vectors)
+                self.sent_word_vectors_w2v.append(sent_vectors_w2v)
             self.sent_words.append(sent_tokens)
 
 
@@ -233,19 +254,32 @@ class ProcessTextData:
 
     @cached_property
     def LM_features(self) -> dict[str, float]:
-        return {'m_lcoh': self.mean_lcoh,
-                'm_gcoh': self.mean_gcoh,
-                'm_cgcoh': self.mean_cgcoh,
-                'm_scoh': self.mean_scoh,
-                'm_sprob': self.mean_sent_prob,
-                'm_bert_lcoh': np.mean(self.local_coherence_list(model='bert')),
-                'm_bert_gcoh': np.mean(self.global_coherence_list(model='bert')),
-                'm_bert_cgcoh': np.mean(self.cumulative_global_coherence_list(model='bert')),
-                'm_bert_scoh': np.mean(self.second_order_coherence_list(model='bert')),
-                'm_raw_lcoh': np.mean(self.local_coherence_list(model='raw')),
-                'm_raw_gcoh': np.mean(self.global_coherence_list(model='raw')),
-                'm_raw_cgcoh': np.mean(self.cumulative_global_coherence_list(model='raw')),
-                'm_raw_scoh': np.mean(self.second_order_coherence_list(model='raw'))
+        return {'glove_tf_lcoh': self.mean_lcoh,
+                'glove_tf_gcoh': self.mean_gcoh,
+                'glove_tf_cgcoh': self.mean_cgcoh,
+                'glove_tf_scoh': self.mean_scoh,
+
+                'glove_avg_lcoh': np.mean(self.local_coherence_list(model='glove_avg')),
+                'glove_avg_gcoh': np.mean(self.global_coherence_list(model='glove_avg')),
+                'glove_avg_cgcoh': np.mean(self.cumulative_global_coherence_list(model='glove_avg')),
+                'glove_avg_scoh': np.mean(self.second_order_coherence_list(model='glove_avg')),
+
+                'w2v_tf_lcoh': np.mean(self.local_coherence_list(model='w2v_tf_idf')),
+                'w2v_tf_gcoh': np.mean(self.global_coherence_list(model='w2v_tf_idf')),
+                'w2v_tf_cgcoh': np.mean(self.cumulative_global_coherence_list(model='w2v_tf_idf')),
+                'w2v_tf_scoh': np.mean(self.second_order_coherence_list(model='w2v_tf_idf')),
+
+                'w2v_avg_lcoh': np.mean(self.local_coherence_list(model='w2v_avg')),
+                'w2v_avg_gcoh': np.mean(self.global_coherence_list(model='w2v_avg')),
+                'w2v_avg_cgcoh': np.mean(self.cumulative_global_coherence_list(model='w2v_avg')),
+                'w2v_avg_scoh': np.mean(self.second_order_coherence_list(model='w2v_avg')),
+
+                'bert_sprob': self.mean_sent_prob,
+                'bert_pppl': np.mean(self.pppl_list),
+                'bert_lcoh': np.mean(self.local_coherence_list(model='bert')),
+                'bert_gcoh': np.mean(self.global_coherence_list(model='bert')),
+                'bert_cgcoh': np.mean(self.cumulative_global_coherence_list(model='bert')),
+                'bert_scoh': np.mean(self.second_order_coherence_list(model='bert')),
                 }
 
     # lexical
@@ -273,10 +307,18 @@ class ProcessTextData:
     def sent_vectors(self, model: Optional[str] = 'default') -> List[np.array]:
         if model == 'bert':
             return self.bert_sent_vectors
-        elif model == 'raw':
+        elif model == 'glove_avg':
             return self.data.raw_sent_vectors
-        else:
+        elif model == 'glove_tf_idf':
             return self.data.sent_vectors
+        elif model == 'w2v_avg':
+            return self.data.raw_sent_vectors_w2v
+        elif model == 'w2v_tf_idf':
+            return self.data.sent_vectors_w2v
+        elif model == 'default':  # default to glove_tf_idf
+            return self.data.sent_vectors
+        else:
+            raise ValueError(f'Invalid model: {model}')
 
     def local_coherence_list(self, model: Optional[str] = 'default') -> List[float]:
         return get_local_coherence_list(self.sent_vectors(model=model))
@@ -294,7 +336,13 @@ class ProcessTextData:
     def sent_prob_list(self) -> List[float]:
         return get_prob_list(self.data.sents,
                              model_nsp=self.data.config.bert_model_nsp,
-                             tokenizer_nsp=self.data.config.bert_tokenizer_nsp)
+                             tokenizer_nsp=self.data.config.bert_tokenizer)
+
+    @cached_property
+    def pppl_list(self) -> List[float]:
+        return get_pppl_list(self.data.sents,
+                             model_mlm=self.data.config.bert_model_mlm,
+                             tokenizer_mlm=self.data.config.bert_tokenizer)
 
     # all values
     @cached_property
@@ -380,12 +428,12 @@ def main():
     pth = '/Users/galina.ryazanskaya/Downloads/thesis?/code?/'
     df = pd.read_csv(pth + 'rus_transcript_lex_by_task_with_dots.tsv', sep='\t', index_col=0)
     config = Config(lang='ru', stopwords=[])
-    new_df = process_dataframe(df, config)  #, not_average=['preprocessed_transcript'])
+    new_df = process_dataframe(df, config)  # , not_average=['preprocessed_transcript'])
 
     with open(pth + 'processed_values/ru_both.tsv', 'w') as f:
         f.write(new_df.to_csv(sep='\t'))
 
-    df = pd.read_csv(pth + 'de_split_questions_cp_HC.tsv',sep='\t', index_col=0)
+    df = pd.read_csv(pth + 'de_split_questions_cp_HC.tsv', sep='\t', index_col=0)
     config = Config(lang='de', stopwords=[])
     new_df = process_dataframe(df, config, not_average=['preprocessed_transcript'])
 

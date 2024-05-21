@@ -259,12 +259,11 @@ def pointplot_horizontal_wo_errorbar(df, x, ax, reorder_synt=True, **kwargs):
                   ax=ax, order=order, hue_order=hue_order, **kwargs)
 
 
-
 def prep_horizontal_pointplot_errobar_data(df, col, plot_abs=False):
     r = np.concatenate(df[col].to_numpy())
     if plot_abs:
         r = map(abs, r)
-    idx = np.concatenate([[x]*len(df[col][x]) for x in df[col].index])
+    idx = np.concatenate([[x] * len(df[col][x]) for x in df[col].index])
     if len(idx.shape) > 1:
         idx = list(map(lambda x: x[0] + ': ' + x[1], idx))
     d = pd.DataFrame(data=r, columns=[col])
@@ -281,21 +280,25 @@ def map_model(m: str) -> str:
         return 'w2v'
 
 
-def prep_LM_pointplot_data(df, plot_abs=False):
+def prep_LM_pointplot_data(df, plot_abs=False, map_model_f=None):
+    if map_model_f is None:
+        map_model_f = lambda x: x.rsplit('_', 1)[0]
     if plot_abs:
         df = df.applymap(abs)
-    df['model'] = [map_model(m) for m in df.index]
+    df['model'] = [map_model_f(m) for m in df.index]
     df['metric'] = [x.split('_')[-1] for x in df.index]
     return df
 
 
-def prep_LM_pointplot_errobar_data(df, col, plot_abs=False):
+def prep_LM_pointplot_errobar_data(df, col, plot_abs=False, map_model_f=None):
+    if map_model_f is None:
+        map_model_f = lambda x: x.rsplit('_', 1)[0]
     r = np.concatenate(df[col].to_numpy())
     if plot_abs:
         r = map(abs, r)
-    idx = np.concatenate([[x]*len(df[col][x]) for x in df[col].index])
+    idx = np.concatenate([[x] * len(df[col][x]) for x in df[col].index])
     d = pd.DataFrame(data=r, columns=[col])
-    d['model'] = list(map(map_model, idx))
+    d['model'] = list(map(map_model_f, idx))
     d['metric'] = list(map(lambda x: x.split('_')[-1], idx))
     return d
 

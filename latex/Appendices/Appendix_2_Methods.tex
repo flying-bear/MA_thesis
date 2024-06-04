@@ -4,7 +4,7 @@
 \label{appendix:methods} % For referencing this appendix elsewhere, use \ref{AppendixA}
 
 
-\begin{sidewaystable}[]
+\begin{sidewaystable}[ht]
 \resizebox{\textwidth}{!}{%
 \begin{tabular}{llllllll}
 \hline
@@ -25,7 +25,7 @@ Foreign Word Use & 1 &  &  &  &  & \cite{jeong2023exploring} &  \\
 \end{sidewaystable}
 
 
-\begin{sidewaystable}[]
+\begin{sidewaystable}[ht]
 \resizebox{\textwidth}{!}{%
 \begin{tabular}{llllllllll}
 \hline
@@ -49,7 +49,7 @@ Sent. Count & 7 & \begin{tabular}[c]{@{}l@{}} \cite{morgan2021natural}; \\ \text
 \end{sidewaystable}
 
 
-\begin{sidewaystable}[]
+\begin{sidewaystable}[ht]
 \resizebox{\textwidth}{!}{%
 \begin{tabular}{llllllll}
 \hline
@@ -75,7 +75,7 @@ Clustering Coefficient & 1 &  &  &  &  &  & \cite{tang2023latent}\\
 \end{sidewaystable}
 
 
-\begin{sidewaystable}[]
+\begin{sidewaystable}[ht]
 \resizebox{\textwidth}{!}{%
 \begin{tabular}{llllllll}
 \hline
@@ -94,7 +94,7 @@ Vector Magnitude & 2 &  & \textit{} & \textit{\begin{tabular}[c]{@{}l@{}} \texti
 
 
 
-\begin{sidewaystable}[]
+\begin{sidewaystable}[ht]
 \resizebox{\textwidth}{!}{%
 \begin{tabular}{llllllllll}
 \hline
@@ -116,7 +116,7 @@ Q-similarity Tangentiality & 4 &  & \textit{\cite{morgan2021natural}} & \cite{ko
 \end{sidewaystable}
 
 
-\begin{sidewaystable}[]
+\begin{sidewaystable}[ht]
 \resizebox{\textwidth}{!}{%
 \begin{tabular}{llllllll}
 \hline
@@ -130,7 +130,7 @@ Fine-Tuned Classifier & 3 &  &  &  &  &  & \begin{tabular}[c]{@{}l@{}} \cite{wou
 \caption[Summary of the LM-based feature metric results]{\label{tab:method:feature} Summary of the results reported for the LM-based feature metrics used in the reviewed papers. \\ ``+'' indicates significant group difference with \textit{higher} values in the patient population.  ``!'' indicates absence of significant differences in the metric tested. ``Corr. Symptoms'' indicates significant correlation with symptom severity in any direction. ``No Corr. Symptoms'' indicates absence of significant correlation with symptom severity in any direction. ``Corr. Ling. Scale'' indicates significant correlation with a linguistic symptom scale in any direction.  The studies on clinical high risk populations are shown in italics.}
 \end{sidewaystable}
 
-\begin{sidewaystable}[]
+\begin{sidewaystable}[ht]
 \resizebox{\textwidth}{!}{%
 \begin{tabularx}{\linewidth}{l@{\hspace{1em}}l@{\hspace{1em}}X@{}}
 \hline
@@ -150,7 +150,7 @@ Trigram backoff & 3 & \cite{mitchell2015quantifying, vail2018toward, girard2022c
 \end{sidewaystable}
 
 
-\begin{sidewaystable}[]
+\begin{sidewaystable}[ht]
 \resizebox{\textwidth}{!}{%
 \begin{tabularx}{\linewidth}{l@{\hspace{1em}}l@{\hspace{1em}}X@{}}
 \hline
@@ -170,7 +170,7 @@ IQR & 1 & \cite{parola2022speech} \\
 \end{sidewaystable}
 
 
-\begin{sidewaystable}[]
+\begin{sidewaystable}[ht]
 \resizebox{\textwidth}{!}{%
 \begin{tabularx}{\linewidth}{l@{\hspace{1em}}l@{\hspace{1em}}X@{}}
 \hline
@@ -185,3 +185,22 @@ Sum & 1 & \cite{xu2020centroid} \\
 }
 \caption[Sentence averaging methods used for word embedding-based metrics]{\label{tab:method:word-embedding-averaging} Sentence averaging methods used for word embedding-based metrics.}
 \end{sidewaystable}
+
+
+\begin{figure}[ht!]
+    \includegraphics[width=\textwidth, center]{Figures/elicitation/adventure.png} 
+\captionsetup{width=\textwidth}
+\caption[Tasks: Adventure]{\label{fig:tasks:ad} The image used to elicit adventure task.}
+\end{figure}
+
+\begin{figure}[ht!]
+    \includegraphics[width=\textwidth, center]{Figures/elicitation/sportsman.png} 
+\captionsetup{width=\textwidth}
+\caption[Tasks: Sportsman]{\label{fig:tasks:sp} The image used to elicit sportsman task.}
+\end{figure}
+
+\begin{figure}[ht!]
+    \includegraphics[width=\textwidth, center]{Figures/elicitation/chair.png} 
+\captionsetup{width=\textwidth}
+\caption[Tasks: Chair]{\label{fig:tasks:ch} The image used to elicit chair task.}
+\end{figure}

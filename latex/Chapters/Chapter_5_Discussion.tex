@@ -1,0 +1,462 @@
+% Chapter Template
+
+\chapter{Discussion} % Main chapter title
+\label{chap:5:discussion}
+
+This chapter is dedicated to the interpretation of the results described above. The chapter covers each group of methods and compares the results with the ones reported in other studies (\ref{sec:discussion:lexical}-\ref{sec:discussion:LM}). After that, there is a comparison of cross-methodological results (\ref{sec:discussion:cross-method}), a discussion of study limitations (\ref{sec:discussion:limitations}), and a short conclusion (\ref{sec:discussion:conclusion}).
+
+%-----------------------------------
+%	section 1
+%-----------------------------------
+\section{Lexical Methods}
+\label{sec:discussion:lexical}
+
+As in other studies in the field, lower overall verbosity was observed on the German sample, though, on the Russian sample, the t-test error bar crossed zero even for this metric. Overall verbosity was also negatively correlated with all PANSS subscales, and, on some tasks, with TD and depression severity, meaning that any severe symptom was associated with a decreased word count for the Russian sample. However, on the German sample, where positive symptoms were less pronounced, lower verbosity was only associated with negative symptom severity. 
+
+With regards to LTR, the results on the German sample are in line with the findings that reported lower TTR in the patient group \citep{willits2018evidence, aich2022towards, minor2023automated}, but, on the Russian sample, there were no meaningful group differences, in line with the results reported by \citet{hitczenko2021understanding, jeong2023exploring, schneider2023syntactic}. The results of the present study contradict the findings reported in \citet{ziv2022morphological}, as LTR was lower, rather than higher, in both samples, despite the gap in the size of this difference. LTR also correlated positively with negative and general scales on both samples and, on the Russian sample, also with positive symptoms, as well as being somewhat predictive of TD and depression severity. The positive correlation could be explained by the inverse proportion to overall verbosity which correlated negatively with symptom severity. This hypothesis is partially confirmed by the fact that the opposite direction of correlation was observed for moving average LTR, for which the effect of overall verbosity is mostly negated. In both samples, simple word count performed better than LTR. The fact that MALTR performed much worse in absolute value than LTR, coupled with the fact that the word count outperforms LTR, also suggests that the most predictive strength of LTR comes from the word count component of this metric.
+
+
+% TTR lower in the patient group \citep{willits2018evidence, aich2022towards, minor2023automated}, though some report no significant differences \citep{hitczenko2021understanding, jeong2023exploring, schneider2023syntactic}, or higher \textit{type} and \textit{lemma-token ratio} \citep{ziv2022morphological}.
+
+% The lexical methods may aim at capturing both to positive and negative FTD features. Verbosity in penitents may either be increased (pressure of speech) or decreased (poverty of speech). Lexical diversity and density may be increased (paraphasias) or decreased (poverty of speech and content). Sentiment analysis may reveal the blunted affect which is a typical non-linguistic negative symptom of schizophrenia. Finally, topic analysis may reveal common semantic features shared between different patients which may be related to both negative and positive symptoms.
+
+
+% German
+% LTR + p_n p_t p_o sn - T - msl
+% MALTR - sm sp + msl
+% n words - p_n sn + T + msl
+
+% Russian
+% Overall, on the Russian sample, LTR correlated positively across PANSS subscales but for one task, and word count correlated negatively across PANSS subscales but for one task, while MALTR only performs on two tasks. LTR and word count are also predictive of TD severity on two tasks and of depression severity on one task, while not being overly strongly correlated with mean sentence length.
+% adventure
+% MALTR - p_n, p_o, p_t + msl
+% n words - p_n, p_p, p_o, p_t
+% chair
+% LTR + D, p_n, p_p, p_o, p_t - msl
+% MALTR - p_n, p_p, p_o, p_t + msl
+% n words - D, p_n, p_p, p_o, p_t + msl
+% present
+% LTR + TD, p_n, p_p, p_o, p_t
+% MALTR - p_n + msl
+% n words - TD, p_n, p_p, p_o, p_t 
+% sportsman
+% LTR  + TD, p_n, p_p, p_o, p_t - msl
+% n words - TD, p_n, p_p, p_o, p_t
+
+%-----------------------------------
+%	section 2
+%-----------------------------------
+\section{Syntactic Methods}
+\label{sec:discussion:syntactic}
+
+The part-of-speech rates obtained in the present study align only partially with the results reported previously. 
+
+% DET
+Even though DET rates were often reported to be lower in the NAP or SDD patients for several languages\footnote{\cite{bedi2015automated, corcoran2018prediction, sarzynska2021detecting, tang2021natural}}, the present study found no group differences in DET rates in either sample, similarly to the results reported for CHR populations \citep{bilgrami2022construct, haas2020linking}. Nevertheless, there were some negative correlations with negative symptom severity on one of the tasks in the Russian sample, contradicting the absence of such association reported by \citet{corcoran2018prediction, bilgrami2022construct} and higher article use reported by \citet{mitchell2015quantifying}.
+
+% PRON
+The experiments conducted here could find no effects for pronoun use, contradicting partially the results reported by \citet{corcoran2018prediction, jeong2023exploring}. 
+This also does not support the idea that reduced pronoun use could be used to detect poverty of speech typical of negative FTD, as negative symptoms were prevalent in both samples and yet pronoun rates remained unaltered.
+% SCONJ CCONJ
+Unlike what has been reported \citep{silva2022syntactic}, no effect could be observed for subordinating conjunction (SCONJ) use, but instead, there was a relatively consistent negative correlation with general symptoms for coordinating conjunction use (CCONJ). This could be indicative of lower syntactic complexity and poverty of speech, yet this is not explored in sufficient detail in the present work to make any certain claim.
+% ADJ ADV
+No differences or correlation with symptom severity was observed for ADJ and ADV rates, contradicting the papers claiming both higher \citep{corcoran2018prediction, tang2021natural, ziv2022morphological} and lower \citep{argolo2023burnishing} rates in patient populations. This result does not support the idea that the reduction in these POS types could consistently indicate the poverty of speech content often present in negative FTD.
+% VERB
+Similarly, no effects were found for verb rates, in line with the results reported by \citet{tang2021natural, argolo2023burnishing, haas2020linking}, but in contradiction with lower verb rates reported for a Hebrew-speaking population \citep{ziv2022morphological}.
+
+% AUX
+Interestingly, AUX rates were associated negatively with positive symptoms on the German sample but not on the Russian one. This is the more surprising as the positive symptoms were less pronounced on the former than on the latter, and this result may have to do with the difference between the languages, rather than the tasks or the populations. The reduction in AUX use could be a marker of lower syntactic complexity, but it is not entirely clear whether it is indicative of it, and if so, why it is associated with positive, rather than negative symptoms.
+% NOUN
+There was a slight negative correlation of NOUN rates with both positive and negative symptoms on one of the tasks for the Russian sample, yet this result could be explained merely by the positive correlation with mean sentence length.
+% PART
+Most surprisingly, the best result for POS rates was observed for PART use, which was not reported as a good metric in any of the reviewed studies, yet it correlated positively with all symptom scales to some extent across tasks and languages, as well as being somewhat predictive of TD severity. Once again, however, this could be partially explained by the negative correlation with mean sentence length, which was present for both samples.
+
+%
+Overall, there was little agreement with the results previously reported for POS rates, and only PART use could be suggested as a metric with a reasonable potential.
+
+% The differences in the relative frequency of parts of speech use commonly indicate reduced syntactic complexity, which may be connected with negative FTD (poverty of speech), while reduced use of descriptive words (i.e. adjectives and adverbs) as well as reduced use of referential devices, which can be regarded as indicative of poverty of content. %\citep{corcoran2018prediction, bar2019semantic, tang2021natural, ziv2022morphological}. 
+% Similarly, reduced syntactic complexity may be indicative of poverty of speech or speech content. On the other hand, ambiguous pronouns may be one of the driving forces behind perceived incoherence, caused by loosening of associations, typical of positive FTD.
+
+% POS
+% The most consistently reported change is the lower use of determiners and wh-words in the patient group \citep{bedi2015automated, corcoran2018prediction, sarzynska2021detecting, tang2021natural}, though with some reporting no group difference on CHR population \citep{bilgrami2022construct} or no correlation with symptoms \citep{corcoran2018prediction, bilgrami2022construct}. \citet{mitchell2015quantifying} report higher article use rather than lower. Some studies report lower adjective and adverb use \citep{corcoran2018prediction, tang2021natural, ziv2022morphological} and reduced typicality in the use of adjectives and adverbs \citep{bar2019semantic}, while others report higher adjective use in at risk populations \citep{argolo2023burnishing}. The patients were also reported to show lower verb and past tense use \citep{ziv2022morphological} though some report the opposite results \citep{mitchell2015quantifying} or no group differences in verb use \citep{tang2021natural, argolo2023burnishing}. Additionally, higher subordinating conjunction use \citep{silva2022syntactic}, lower possessive pronoun use \citep{corcoran2018prediction} and higher 1st person word use \citep{ziv2022morphological} or negative correlation of pronoun use with symptom severity \citep{jeong2023exploring} were reported for patient populations. Finally, several studies use POS tags as features in predictive models or latent analysis \citep{bedi2015automated, sarzynska2021detecting, tang2022clinical, tang2023latent}. The only study to analyze POS tags and report no differences focused on clinical high risk population, rather than patients exhibiting symptoms \citep{haas2020linking}.
+
+% German 
+% PART		 + sn, p, p_n, p_o, p_t - msl
+% AUX		 - sp
+% CCONJ		 - sn, p_n, p_o, p_t
+
+% Russian
+
+% The rate of PART was positively correlated with symptom severity on three of the four tasks.  As for, CCONJ, DET, and NOUN rates, each only performed on one of the tasks.
+
+% adventure
+% chair
+% PART  + TD, p_n, p_p, p_o, p_t - msl
+% NOUN	 - TD, p_n, p_p, p_t + msl
+% present
+% PART + p_p, p_t
+% DET  - p_n, p_t
+% CCONJ - p_o
+% sportsman
+% PART + p_p
+
+% mean sl
+The results regarding unit counts and length are mixed. As is commonly reported, decreased sentence length was found in the German patient population\footnote{\cite{iter2018automatic, morgan2021natural, spencer2021lower, tang2021natural, bilgrami2022construct, silva2022syntactic, nettekoven2023semantic, schneider2023syntactic, silva2022syntactic}}, though not in the Russian one, for which the result was more similar to the ones reported by \citet{liang2022widespread, gupta2018automated, haas2020linking}, showing no group differences. Additionally, on the German sample, the lower mean sentence length was associated with negative symptoms, similar to the results reported by \citet{bilgrami2022construct}, but not with positive symptoms, which were less pronounced, contradicting \citet{liebenthal2022linguistic}. On the Russian sample, it was associated both with positive and negative symptoms, but only on two of the four tasks. The reduced mean sentence length could be indirectly indicative of reduced syntactic complexity or poverty of speech typical for negative FTD, yet it was associated with both positive and negative symptoms on the Russian sample.
+
+% max sl std sl
+The maximal sentence length, which was only used as a feature in other studies \citep{bedi2015automated, tang2023latent}, could differentiate between the groups on the German, but not the Russian sample, yet correlated negatively with symptom severity on both, though with negative symptoms only on the German sample. On both samples, maximal sentence length generally performed worse than the mean, though with a few exceptions. The results for standard deviation in sentence length were similar to that for mean and maximum, but still weaker.
+
+% n sents
+As discussed above (\ref{sec:results:clinical:sample_length}), the sentence count contributed more than the mean sentence length to the overall verbosity for two tasks of the Russian sample, but not the other two, and not on the German sample. It is unsurprising that the sentence count only correlated with symptom severity on the Russian sample, not the German one. On the Russian sample, the number of sentences was the strongest metric, being the only one that correlated with symptom scales on all tasks. It was also rather a strong predictor of TD and depression severity. This negative association with symptom severity is similar to what was reported by \citet{jeong2023exploring}. Following several studies \citep{gupta2018automated, tang2021natural, schneider2023syntactic}, but unlike both \citet{iter2018automatic}, who reported lower sentence count, and \citet{morgan2021natural, nettekoven2023semantic}, who reported a higher one, no group differences were present in either of the samples in the present study.
+
+% Finally, some rely on sentence, clause, or phrase length and counts as a metric. Generally, decreased sentence length is reported in the patient population\footnote{\cite{iter2018automatic, morgan2021natural, spencer2021lower, tang2021natural, bilgrami2022construct, silva2022syntactic, nettekoven2023semantic, schneider2023syntactic}}, though some report no differences between patients with FEP \citep{liang2022widespread} or CHR \citep{gupta2018automated, haas2020linking} and controls. Additionally, some report lower sentence length correlating with positive \citep{liebenthal2022linguistic} and negative \citep{bilgrami2022construct} symptoms, as well as social functioning \citep{silva2022syntactic}. Maximal sentence length was reported to correlate with poverty of speech as assessed by TALD \citep{xu2020centroid}. Some also report lower clause %or T-unit 
+% length in patient population \citep{silva2022syntactic} or in the patient sub-population with more severely affected brain \citep{liang2022widespread} with no difference between the patient group and control. 
+% Several studies successfully use utterance length \citep{tang2023latent} or maximal phrase length \citep{bedi2015automated} as a feature in latent analysis or classifiers. 
+% Interestingly, the number of sentences is rarely used, and the results are contradictory, with some reporting lower count \citep{iter2018automatic} or correlation with symptoms \citep{jeong2023exploring} while others find no group differences \citep{gupta2018automated, tang2021natural, schneider2023syntactic} or higher sentence counts \citep{morgan2021natural, nettekoven2023semantic}. This might indicate that lower verbosity overall is a result of shorter simpler sentences, rather than lower sentence counts.
+
+% German 
+% mean sl		t - n, p_n, p_t
+% max sl		t - n,  p_n + msl
+% std sl		t - n,  p_n
+
+% Russian
+%  Overall, on the Russian sample, the number of sentences was the strongest metric, being the only one, that correlated with symptom scales on all tasks. As could be expected, mean sentence length served as a good baseline on only two of the tasks (chair and present), and maximal sentence length performed on the same tasks, though it correlated with less subscales that mean sentence length.
+
+% adventure
+% n sents	 - p_o, p_t 
+% chair
+% mean sl  - D, p_n, p_p, p_o, p_t
+% max sl    D + msl
+% n sents  - D, p_p, p_o, p_t
+% present
+% mean sl - TD, p_n, p_o, p_t
+% max sl - TD, p_n, p_p, p_o, p_t + msl
+% std sl - TD, p_n, p_p, p_o, p_t
+% n sents - p_n
+% sportsman
+% max sl  - p_p + msl
+% n sents  - TD, p_n, p_p, p_o, p_t
+
+%-----------------------------------
+%	section 3
+%-----------------------------------
+\section{Graph-Based Methods}
+\label{sec:discussion:grpah}
+
+In line with previously reported results, a lower number of nodes and edges, as well as lower sizes of connected and strongly connected components were observed in the patient population for the German sample, but not the Russian one, where there was no difference between the groups in any of the metrics. 
+
+% N
+The lower number of nodes is in line with the results reported by \citet{nikzad2022does}, but contradicts \citet{mota2012speech, mota2014graph}, and like what was reported by \citet{nettekoven2023semantic}, the number of nodes was linked to overall verbosity. The number of nodes was also negatively associated with symptom severity on both samples, more so with general than negative or positive scales, contradicting the reported absence of such a relation \citep{mota2012speech, mota2014graph, nettekoven2023semantic}. By the mode of graph construction, the number of nodes corresponds to the number of unique lemmas calculated over a moving window, and the simple count of unique words has been reported to be lower in the patient population by some \citep{willits2018evidence} but not others \citep{schneider2023syntactic}, and the difference in the present study was also found on the German but not the Russian sample. 
+
+% E
+The lower number of edges, similarly, was lower only in the German patient sample, in line with several studies \citep{mota2014graph, mota2016quantifying, mota2017thought, nikzad2022does}, while on the Russian sample the result was in line with the papers finding no difference in the number of edges \citep{mota2012speech, nettekoven2023semantic}. In the present study, the lower number of edges consistently correlated with the general symptom scales, and less so with negative and positive ones. This partly is in line with \citet{mota2014graph}, who report significant anti-correlation with negative and cognitive symptom severity, yet contradicts other studies, where the correlation was absent \citep{mota2012speech, nettekoven2023semantic}. The number of edges could also serve as a predictor of depression severity on the Russian sample, as well as of TD severity.
+
+% LSC LCC
+Like in most studies reporting the results for largest connected and strongly connected components\footnote{\cite{mota2014graph, mota2016quantifying, mota2017thought, spencer2021lower, morgan2021natural, nikzad2022does}}, there was a lower value for both these metrics in the German patient population, though not in the Russian one, similarly to \citet{mota2012speech}. There was also, on both samples, a significant negative correlation with general and negative symptom severity, as well as with positive symptom severity, and predictive power for TD and depression severity on the Russian sample, similar to the correlations reported in several studies exploring the graph-based metrics \citep{morgan2021natural, spencer2021lower, nikzad2022does} and in contradiction with the ones finding no such effects \citep{mota2012speech, argolo2023burnishing, nettekoven2023semantic}. 
+
+% PE L1 L3
+In the present study, there was no difference number of parallel edges or loops, unlike what has been reported in the founding papers \citep{mota2012speech, mota2014graph}, yet even in these studies, the effects disappeared after controlling for length. Also in contradiction with these studies, there was some correlation with symptom severity on the Russian sample for parallel edges, as well as for loops of size one\footnote{The number of loops of size one corresponds to the number of lemma repetitions calculated over a moving window, so this could be seen as somewhat similar to the studies exploring repetitions or perseveration.} and three, with L3 positively correlating with most scales, while L1 only with general symptoms both only on one task, and PE being additionally predictive of depression severity.
+
+% node degree
+There was no difference in average node degree or standard deviation therein in either sample, which is in line with the founding paper \citep{mota2012speech} but contradicts some follow-up studies \citep{mota2014graph, nikzad2022does}. Unlike the reported absence of correlation with symptom severity \citep{mota2012speech, mota2014graph, nikzad2022does}, there was an anti-correlation with positive and negative symptom severity on one of the tasks on the Russian sample, and average node degree was also predictive of TD severity on this task. 
+
+Overall, these results do not offer much support for graph connectivity being indicative of either positive or negative FTD but rather suggest that the well-performing graph-based metrics are strong predictors, sensitive to any symptoms, regardless of symptom type. The results found in this work are stronger than what has been previously reported with respect to correlation with symptom severity, though, in some cases, weaker than what has been reported for the efficacy of graph-based metrics in identifying group differences.
+
+
+% The founding papers \citep{mota2012speech, mota2014graph}, also report differences in the number of repeated and parallel edges, as well as the number of loops of lengths one, two, and three, though theses effects disappeared after controlling for verbosity - also no corr with simptoms
+
+% The number of nodes was reported to be lower in the patient population by \citet{nikzad2022does} and \citet{nettekoven2023semantic}, yet for the latter the effect disappeared after controlling for overall verbosity. \citet{mota2022happy} used the number of nodes as a feature in a classifier, while \citet{tang2023latent} excluded it on the initial step. \citet{mota2012speech} and subsequently \citet{mota2014graph} reported no difference in the number of nodes and no significant correlation with symptom scales, and so did \citet{nettekoven2023semantic}. \citet{palominos2023coreference} reported no difference in the number of nodes that were calculated not from words but from NPs.
+
+% Several studies report lower number of edges in the patient population \citep{mota2014graph, mota2016quantifying, mota2017thought, nikzad2022does}, as well as smaller largest strongly connected component and largest connected components \citep{mota2014graph, mota2016quantifying, mota2017thought, spencer2021lower, morgan2021natural, nikzad2022does}.
+
+% Many report that lower values of these graph features are associated with negative PANSS \citep{mota2014graph, mota2016quantifying, nikzad2022does} and negative linguistic symptoms measured by TLI/TLC \citep{morgan2021natural, spencer2021lower, nikzad2022does}, though some report no relation with PANSS \citep{mota2012speech, argolo2023burnishing, nettekoven2023semantic}.
+
+% The founding papers \citep{mota2012speech, mota2014graph}, also report differences in the number of repeated and parallel edges, as well as the number of loops of lengths one, two, and three, though theses effects disappeared after controlling for verbosity - also no corr with simptoms
+
+% Reduced graph connectivity is typically regarded as indicative of positive FTD symptoms such as incoherence or derailment and flight of ideas, as, when very little is said on any given topic, the resulting graph in largely disconnected. On the other hand, very high connectivity may be indicative of negative FTD symptoms of poverty of speech content or perseveration.
+
+
+% German
+% LCC LSC N E      t  - n, p_n, p_o, p_t  + msl
+
+% Russian
+% Overall, among the graph-based metrics, LCC, LSC, N, and E showed the best performance on the Russian sample, as they correlated with some psychiatric scales across all of the tasks, though they also were correlated with mean sentence length on the two tasks where it could be expected, as they probably depended somewhat on the verbosity. The number of parallel edges performed on two of the four tasks, chair and sportsman, and the average and standard deviation in node degree, as well as loops of size one (lemma repetitions), only performed on one task, namely, present.
+% adventure
+% LCC LSC N E - p_o, p_t + msl
+% LSC - p_o, p_t, p_n + msl
+% chair
+% LCC LSC N E  - p_n, p_p, p_o, p_t + msl
+% E  - D, p_n, p_p, p_o, p_t + msl
+% L3  + TD, p_n, p_p, p_o, p_t
+% PE  - D, p_o, p_t
+% present
+% LCC LSC N E - TD, p_n, p_p, p_o, p_t
+% average degree - TD, p_n, p_p
+% std degree - p_n, p_p
+% L1 + p_o
+% sportsman
+% LCC LSC N E - p_n, p_p, p_o, p_t
+% PE - TD, p_n, p_p, p_t
+
+%-----------------------------------
+%	section 4
+%-----------------------------------
+\section{LM-Based Methods}
+\label{sec:discussion:LM}
+
+In this section, I first discuss the relative efficacy of the tested LM-based metrics (\ref{sec:discussion:LM:metrics}), followed by the effects of the model selection and sentence averaging procedure (\ref{sec:discussion:LM:models}), as well as the relation of both models and metrics with mean sentence length, and concluding with metric-model effects and general remarks (\ref{sec:discussion:LM:interaction}).
+
+% There was, for LM-based metrics, little similarity between the languages or tasks. Interestingly, even the direction of correlation with symptoms differed between the samples, as BERT metrics tended to correlate positively with symptoms scales on the Russian sample, but negatively on the German one, where there was no difference in correlation direction between BERT and w2v models. On the German sample, there was also a much clearer hierarchy of models and metrics,  which was absent from the Russian sample across the tasks. On both samples, BERT correlated least with mean sentence length, though here, also, the direction of correlation differed between the samples. On the German sample, TF-IDF clearly helped to mitigate the correlation with length, while on the Russian sample, this pattern was much weaker, and more task-dependent. Next sentence probability only correlated with mean sentence length on the German sample, not on the Russian one, where it was least strongly correlated of all the metrics. Cumulative global coherence was clearly least length-dependent for the German sample, but this pattern, if present, was also much weaker on the Russian sample.
+
+\subsection{Metrics}
+\label{sec:discussion:LM:metrics}
+
+% The similarity-based metrics typically try to capture positive FTD symptoms such as incoherence or derailment as well as tangentiality. Lowered text predictability may also be seen as indicative of incoherence or derailment while higher values may indicate of negative symptoms such as perseveration and poverty of speech content.
+
+None of the LM-based metrics tested in the present work differentiated meaningfully between the groups.
+
+For the most popular LM-based metric, i.e. first order (local) coherence, some correlations with symptom scales were present, though weak, on both samples. The absence of group difference was also reported by several papers in the field\footnote{\cite{iter2018automatic, just2020modeling, hitczenko2021understanding, bilgrami2022construct, haas2020linking}}, though a few papers reported a difference for some or all tested models\footnote{\cite{iter2018automatic, just2019coherence, morgan2021natural, ryazanskaya2020thesis}}. Confirming what had been suggested previously \citep{ryazanskaya2020thesis, just2023validation, parola2022speech}, there was correlation with negative and general symptoms measured by PANSS or SANS on both samples, though it depended greatly on task and model, with averaged GloVe or either word2vec variant performing on the German sample and one task of the Russian one, while on another task there was no correlation with PANSS, and yet TF-IDF weighted GloVe local coherence could predict depression severity.
+
+% german % lcoh glove_avg - sn p_n p_t p_o 
+%               w2v_tf - sn, sp, p_n, p_p, p_o, p_t
+%               w2v_avg  - n, p_n, p_o, p_t
+% russian % chair   % lcoh gcoh scoh on glove_tf - dep
+%         % present % lcoh glove_avg - p_n
+%                   % lcoh w2v_tf - p_n, p_o, p_t
+%                   % lcoh w2v_avg - p_n, p_o, p_t
+
+
+% metrics
+% local coherence
+% While some report lower local coherence scores in the patient population \citep{just2019coherence, morgan2021natural, ryazanskaya2020thesis}, some of these studies only observe this effect with few embedding methods among may tested settings \citep{iter2018automatic, just2019coherence} or report that the results are significantly affected by sentence length to the extent that the results are insignificant after controlling for it \citep{just2019coherence}. Some studies report finding no group difference at all, both for SDD \citet{just2020modeling} and CHR populations \citep{hitczenko2021understanding, bilgrami2022construct, haas2020linking}. The metric also reported to fail as a predictor of longitudinal outcomes \citep{just2023validation}.
+% As for correlation with symptoms, while some studies find correlation with PANSS, especially negative subscales \citep{ryazanskaya2020thesis, just2023validation}, others find no such relation but report correlation with SANS \citep{parola2022speech}. \citet{just2020modeling} report lower coherence in patients with positive FTD as opposed to patients without it, though no significant group difference with controls was found. On CHR populations, no correlation with symptom severity was observed \citep{hitczenko2021understanding}.
+
+There was also no difference between the groups in second-order coherence, unlike what has been reported by \citet{sarzynska2021detecting} for Polish and by \citet{parola2022speech} for Chinese, Danish, and German. However, on the German sample, it did correlate negatively with SANS as well as negative, general, and total PANSS scores when calculated using BERT, either word2vec variant, or averaged GloVe; and TF-IDF weighted GloVe only correlated with SANS and PANSS general. Similar correlations with negative, general, and total PANSS scores were also obtained for either word2vec variant or averaged GloVe second-order coherence on one task in the Russian sample, but not on other tasks or models. BERT second-order coherence only correlated with the general symptom scale for the Russian sample.
+
+% second order coherence
+% The authors used this metric in a classifier model with very high accuracy \citep{bedi2015automated}, and a similar approach was since applied to Polish \citep{sarzynska2021detecting}. \citet{parola2022speech} also tested second order coherence in Chinese, Danish, and German, and found it to be significantly lower in the patient populations.
+
+% German
+% scoh 
+%      bert glove_tf glove_avg w2v_tf w2v_avg - p_n p_t
+%      bert glove_avg w2v_tf w2v_avg - sn, p_o
+% Russian
+% present % glove_avg w2v_tf w2v_avg scoh - p_n, p_o, p_t 
+%           bert      scoh + p_o
+
+
+As for centroid-based global coherence as well as cumulative global coherence, there are no papers showing its efficacy in differentiating between the groups, but the papers that use show both metrics to correlate with PANSS (for Russian by \citet{ryazanskaya2020thesis}; and for German by \citet{just2023validation}) and with TALD scores and human judgement of coherence \citep{xu2020centroid, xu2022fully}. In the present study, there was indeed no difference between the groups, and the correlation with PANSS, across the scales, was only present for one model on one task in the Russian sample and not at all for the German one. On one task, BERT centroid and cumulative centroid global coherence correlated positively with all PANSS subscales, as well as being predictive of TD severity; while on another task no correlation with PANSS was found, but averaged w2v global coherence could predict depression severity.
+
+% global & cumulative global coherence
+% Both metrics were shown to correlate with human coherence judgements \citep{xu2020centroid, xu2022fully} as well as to predict TALD scores \citep{xu2022fully}. The metrics were also successfully applied to Russian, being able to differentiate between the groups and correlating with PANSS scores \citep{ryazanskaya2020thesis}; as well to German, where the centroid global coherence was shown to correlate with negative, disorganized, and exited PANSS subscales \citep{just2023validation}, though with no ability to predict longitudinal outcomes.
+
+% Russian
+% chair
+% lcoh gcoh scoh on glove_tf - dep
+% w2v_avg cgcoh + p_o
+% present
+% bert gcoh cgcoh + TD, p_n, p_p, p_o, p_t 
+% glove_avg gcoh - p_n
+
+Like previously reported \citep{hitczenko2021understanding, tang2021natural}, there was no difference in next sentence probability between the groups, though, unlike what was previously reported \citep{tang2021natural, jeong2023exploring}, there was, for the German sample, a slight negative correlation with PANSS negative and total scores, and no correlation with SANS or SAPS, with no effects at all on the Russian sample.
+
+% next sentence prediction
+% The metric was first used for psychosis detection by \citet{hitczenko2021understanding} with no significant differences found between healthy controls and CHR population. Subsequently, it was applied to SZ patients, also yielding no group difference \citep{tang2021natural} and no correlation with PANSS, though sentence likelihood was negatively associated with derailment, illogicality, and circumstantiality as measured by TLC, SANS, and SAPS \citep{jeong2023exploring}.
+
+% german
+% sprob - t p_n p_t
+
+% perplexity
+In line with the results reported by \citet{vail2018toward}, on both samples there was a correlation of pseudo-perplexity with symptom severity, though, surprisingly, the direction of correlation differed between the samples, as it was positive for SANS and general, negative, and total PANSS scores for the German sample, but negative for general PANSS on one for the tasks the Russian sample, where pseudo-perplexity was also predictive of thought disorder severity on one of the tasks. Overly negative results on the Russian sample are partially similar to \citet{girard2022computational}, who reported no correlation with symptom severity. The absence of group difference in perplexity has been reported previously \citep{mitchell2015quantifying} and corresponds to what was found for the Russian sample, though for the German sample, the pseudo-perplexity was somewhat lower in the patient population. The lower pseudo-perplexity is in line with negative symptoms predominating in the German sample, rendering the speech somewhat more stereotyped and less complex. Yet, as pseudo-perplexity was correlated with mean sentence length, lowered in the patient sample, it may partially explain the slight effect observed on it.
+% german
+% pppl + n, p_n, p_o, p_t
+% russian
+% present pppl - TD, p_o
+
+% Perplexity
+% For perplexity assessments, several papers used \textit{trigram	models} which directly assess the co-occurrence likelihood of three word sequences, rather than modeling words with vectors \citep{mitchell2015quantifying, vail2018toward, girard2022computational}. This method was reported to correlate with symptom severity in one study \citep{vail2018toward}, while others found no significant effect \citep{girard2022computational} or group difference in perplexity \citep{mitchell2015quantifying}.
+
+% metric hierarchy
+Overall, on the German sample, there was some metric performance hierarchy, with pseudo-perplexity showing the best performance, alongside second-order coherence, being followed by local coherence and next sentence probability, while both metrics of global coherence performed worst. On the Russian sample, however, the metric performance differed very much between tasks and models, with no clear hierarchy. It is very probable, that several tasks of different types for the German sample would also have differed greatly in metric performance.
+% pppl > scoh > sprob > lcoh > gcoh > cgcoh 
+
+% pattern
+On both languages, there was a curious pattern, where cumulative global coherence and global coherence tended to correlate more positively with symptom severity relative to the other two cosine similarity-based metrics, while local and second-order coherence tended to correlate more negatively, independently of the absolute correlation strength or direction. 
+
+% corr len
+Finally, the correlation with mean sentence length was overall weakest for cumulative global coherence, but this pattern was weak on the Russian sample. There was also one perplexing difference between the two samples that cannot be explained by the difference between the tasks used, namely, the fact that both pseudo-perplexity and next sentence probability only correlated with mean sentence length on the German sample, not on the Russian one, where they were least strongly correlated with length of all the metrics, and they also differed in the direction of correlation with symptoms between the two samples.
+
+\subsection{Language Models}
+\label{sec:discussion:LM:models}
+
+There was no influence of the model on the difference between the groups, as it was equally absent for all models, and the direction of differences often differed between the metrics in some cases. On the German sample, metrics computed using BERT performed slightly better than the ones computed with w2v or GloVe, though the opposite pattern could be seen for the positive symptom scales. On the Russian sample, BERT only outperformed other models on one of the tasks, followed by averaged w2v, yet there was no or even the opposite pattern for the other tasks. This tentative pattern is in line with the results reported in \citet{ryazanskaya2020thesis}. There was little difference between TF-IDF and average w2v in terms of performance. Neither schema was very efficient, which is in line with \citet{just2020modeling, hitczenko2021understanding} but contradicts \citet{just2019coherence, xu2022fully}. GloVe tended to perform worse than word2vec similar to what had been reported by \citet{iter2018automatic, just2023validation}, but contradicting \citet{just2019coherence}. GloVe did not perform well overall, as reported by several studies before, finding no group differences \citep{just2020modeling, alonso2022language, alonso2022progressive}, though there were some correlations with PANSS, in line with \citet{alonso2022progressive}.
+
+In terms of the correlation with sentence length, the pattern was much more pronounced on the German sample, where BERT cosine similarity-based metrics were clearly least correlated with mean sentence length, followed by TF-IDF weighted GloVe, and averaged GloVe, and then TF-IDF weighted and averaged word2vec, which, as has been reported before, was most strongly correlated with sentence length. A similar pattern could be seen on some tasks in the Russian sample, but it is not very consistent. The positive association with mean sentence length in w2v, as has been suggested, seems to stem from the way in which longer sequences are closer to a meaningless average driving the cosine similarity higher \citep{hitczenko2021understanding, parola2022speech, fradkin2023theory}. The results of the present experiments suggest that TF-IDF helps mitigate but cannot entirely remove this effect. As mentioned above, the correlation with sentence length for next sentence prediction and pseudo-perplexity was very high for the German sample, but not the Russian one. Rather surprisingly, the direction of correlation with symptoms also differed between the languages for BERT, despite BERT being efficacious with some metrics for both languages. The direction of correlation with symptoms for the metrics calculated with word2vec or GloVe was consistently negative in both samples, while for BERT it was only negative for the German and positive for the Russian sample.  
+
+% models
+% Quite a few papers compared word2vec to newer models, such as 
+% GloVe\footnote{\cite{iter2018automatic, just2019coherence, tang2022clinical, tang2023latent, just2023validation}}, 
+% sent2vec\footnote{\cite{iter2018automatic, just2019coherence, hitczenko2021understanding}}, 
+% ELMo\footnote{\cite{ryazanskaya2020thesis, hitczenko2021understanding, sarzynska2021detecting}}, 
+% and BERT\footnote{\cite{ryazanskaya2020thesis, hitczenko2021understanding, xu2022fully}}. While some report that the choice of the model does not affect the outcomes \citep{hitczenko2021understanding, fradkin2023theory}, other find significant differences between the models, interaction between models, metrics, and tasks.  \citet{iter2018automatic, just2023validation} report word2vec outperforming GloVe, but \citet{just2019coherence} observe the opposite pattern. ELMo and BERT were reported to outperform word2vec in symptom severity assessment \citep{ryazanskaya2020thesis} but proved equally unsuccessful as word2vec in distinguishing CHR from controls \citep{hitczenko2021understanding}. Additionally, BERT and its variants were shown to outperform word2vec in predicting human coherence judgement \citep{xu2022fully}. Finally, though \citet{iter2018automatic} report that word2vec outperforms \textit{sent2vec}\footnote{\textit{sent2vec}\citep{moghadasi2020sent2vec} was only used in a few papers in the field and only in comparison with other methods and is less popular than transformer-based architectures.}, both \citet{just2019coherence} and \citep{hitczenko2021understanding} show that the two are equally inefficient for psychosis detection.
+
+% GloVe
+% \citet{iter2018automatic, just2023validation} report word2vec outperforming GloVe, but \citet{just2019coherence} observe the opposite pattern.
+% The papers that use exclusively GloVe embeddings report quite limited success, finding no group differences \citep{just2020modeling, alonso2022language, alonso2022progressive}, tough \citet{alonso2022progressive} report correlation with PANSS and \citet{just2020modeling} report lower coherence values in high FTD patients.
+
+% BERT
+% The results of using BERT embedding are mixed, some reporting successfully differentiating between the groups or scores correlating with symptoms \citep{ryazanskaya2020automated, xu2022fully, srivastava2022p473} and similarly good results observed for SentenceBERT model \citep{xu2022fully}, introduced by \citet{reimers2019sentence}. Others report lack of group difference on CHR populations \citep{hitczenko2021understanding, bilgrami2022construct} or no correlation of symptom severity with next sentence prediction and surprisal metrics \citep{jeong2023exploring}. 
+
+% Another significant factor in word embedding models is the way the vectors representing individual words are combined to obtain a single sentence or phrase representation. By far the most popular technique is \textit{averaging} all the word vectors in a sentence or window, yet it has been reported to be noisy and confounded \citep{fradkin2023theory} as well as to produce undesirable connection between cosine similarity metrics and sentence length \citep{hitczenko2021understanding, parola2022speech, fradkin2023theory}. The reason for this is that averaging static word vectors with no weights results in a more generic and meaningless representation for longer sentences and it fails to reflect that function words, such as articles, might contribute little to the meaning of a sentence while driving all sentence vectors closer to a meaningless average. Therefore, many researchers utilize such weighing schemes as \textit{TF-IDF}, where words are weighted inversely proportional to their corpus frequency and directly proportional to the word frequency in the sentence. This method is used in quite a few papers, with several reporting successful application over LSA \citep{iter2018automatic} or word2vec \citep{just2019coherence, xu2022fully}, others using it in classifier models \citep{ryazanskaya2020automated, tang2023latent}, though some report no group difference in metrics obtained TF-IDF weighted word vectors \citep{just2020modeling, hitczenko2021understanding}. \citet{xu2020centroid} actually find no weighting more efficient that TF-IDF in predicting human coherence judgements, but unlike other studies that use weighted average,  \citet{xu2020centroid} use weighted sum of the vectors. Another method used in several studies is smooth inverse frequency (\textit{SIF}), introduced by \citet{arora2017simple}. It combines frequency weighting with removing the common meaningless component, producing better-performing sentence representations. Metrics over this representation were shown to successfully differentiate between clinical and control groups \citep{iter2018automatic, ryazanskaya2020thesis, morgan2021natural, nettekoven2023semantic}, but could not help to differentiate healthy controls from CHR \citep{hitczenko2021understanding} and were not correlated with symptom severity \citep{iter2018automatic, ryazanskaya2020thesis, hitczenko2021understanding, morgan2021natural}. Unlike \citet{iter2018automatic}, who find both TF-IDF and SIF somewhat efficient, \citet{just2019coherence}.
+
+\subsection{Model-Metric Interaction}
+\label{sec:discussion:LM:interaction}
+
+In both samples, the degree of model-metric interaction was high, more so in the Russian sample, where the model choice determined the direction of the correlation, while the metrics had their own tentative correlation direction. In both samples, neither metric nor model selection had a decisive effect on the performance. The size of difference between the cosine similarity-based metrics for one model was comparable between the models on the German sample, and highest for average word2vec on the Russian sample, being lowest for TF-IDF weighted GloVe. The pattern of only some combination of models and metrics working while others fail is very common for studies that test multiple models and metrics\footnote{\cite{iter2018automatic, just2019coherence, ryazanskaya2020thesis, xu2020centroid, hitczenko2021understanding, xu2022fully, just2023validation}}. This trend suggests that LM-based metrics are not a particularly robust or consistently performing group of metrics.
+
+% model-metric interaction
+%  \citet{iter2018automatic} report that the coherence metric was different between the groups only with word2vec embeddings and SIF averaging, while for tangentiality both word2vec with SIF and LSA with TF-IDF produced classifying scores, and report GloVe and sent2vec not working for any metric. Both \citet{just2019coherence} and \citet{hitczenko2021understanding}, on the other hand, observe that only coherence calculated with GloVe model and TF-IDF weighting could distinguish the groups, and even this was insignificant after correcting for the effect of length, with all other LM-metrics and models showing no effect at all. \citet{just2023validation} report that both first order coherence and centroid global coherence calculated with GloVe or word2vec with mean averaging could predict negative symptom severity, and only word2vec model correlated other subscales. \citet{ryazanskaya2020thesis} reported that on one of the elicitation tasks metrics could worked better with word2vec with SIF or ELMo while on another task BERT showed better performance in distinguishing the groups, and the results were highly inconsistent across tasks, metrics, models, and averaging. Both \citet{xu2020centroid} and \citet{xu2022fully} also report some metrics performing better with one model than another without clear indication of one model being universally better.
+
+
+% German
+% scoh 
+%      bert w2v w2v_raw - p_n p_t
+%      bert - p_o
+%      bert w2v_raw - sn
+% sprob - p_n p_t
+% lcoh w2v_raw - sn p_n p_t p_o
+
+% scoh > sprob > lcoh > gcoh > cgcoh
+% model metric interaction on gcoh, cgcoh
+
+% bert (sn p_n p_o) >< w2v (p_p sp)
+
+% corr len (bert - only sprob; w2v all but cgcoh, w2v_raw - all)
+% w2v raw > w2v > bert
+% scoh, sprob, lcoh > gcoh > cgcoh 
+
+
+% Russian
+% chair
+% lcoh gcoh scoh on w2v - dep
+% no hierarchy
+% model metric interaction
+
+% present
+% bert gcoh cgcoh + TD, p_n, p_p, p_o, p_t 
+% w2v_raw scoh - p_n, p_o, p_t 
+% w2v_raw lcoh - p_n
+% model metric interaction
+% bert > w2v raw > w2v
+% BERT performed the best overall on chair task, but there were also the largest differences between the metrics. Averaged w2v performed closely though somewhat better than TF-IDF weighted w2v, and there was also much larger difference between the individual metrics for the former. For metrics, there was no clear hierarchy due to significant model-metric interaction, with cumulative global and global coherence performing best for BERT and worst for w2v, and, conversely, second order coherence and local coherence performing best for averaged w2v, while being below global coherence metrics for BERT in correlation strength.
+
+
+% corr len:
+% BERT (all but sprob) - msl (above trsh: all on sprotsman and chair; lcoh and and gcoh on adventure)
+% w2v_raw > w2v (but on the chair task; about same on adventure)
+% above trsh: all for both on adventure and sportsman; only w2v on chair, only w2v_raw on present
+
+% All BERT metrics, except next sentence probability and pseudo-perplexity, correlated negatively with mean sentence length, though the correlation was not equally strong across tasks and metrics, being above the threshold for all metrics on chair and sportsman tasks; only for local and global coherence on the adventure task; and for no metrics on present task. Next sentence probability did not correlate with length on any of the tasks. As for the w2v metrics, they tended to correlate positively, rather than negatively, with mean sentence length. The correlation was stronger on averaged w2v than on TF-IDF weighed w2v on two tasks, sportsman and present, while on chair task the opposite was observed, and almost no difference was seen on the adventure task. The correlation was above the threshold for all w2v metrics on sportsman and adventure tasks, and was also so for TF-IDF w2v on chair and for averaged w2v on present tasks.
+
+
+
+%-----------------------------------
+%	section 5
+%-----------------------------------
+\section{Cross-Methodological Comparison}
+\label{sec:discussion:cross-method}
+
+The hierarchy of the groups of metrics differed slightly between the two samples, as the syntactic metrics performed better on the German sample, being the best group, followed by graph-based and then lexical ones. On the Russian sample, verbosity was the strongest symptom predictor, followed by graph-based and syntactic metrics, and then by other lexical metrics. LM-based methods clearly showed the worst performance for both languages, though pseudo-perplexity could be seen as a promising metric on the German data.
+
+The findings of the present study support the patterns reported in other cross-methodological studies, namely, that syntactic metrics outperform LM-based ones\footnote{\cite{mitchell2015quantifying, iter2018automatic, corcoran2018prediction, just2020modeling, morgan2021natural, bilgrami2022construct, liebenthal2022linguistic, argolo2023burnishing}}, and, to some extent, the graph-based ones \citep{argolo2023burnishing}, though in the results of the present work syntactic and graph-based metrics are quite similar in their performance, as most comparing them report \citep{mitchell2015quantifying, just2020modeling, jeong2023exploring}. The relative performance of lexical and syntactic methods was not very definitive, being, as reported, more or less comparable \citep{mitchell2015quantifying, just2020modeling, jeong2023exploring}, with opposite slight trends in the two samples, and the same could be seen in the literature\footnote{\cite{gupta2018automated, rezaii2019machine} report better performance of the lexical metrics, while \citet{schneider2023syntactic, argolo2023burnishing} observed the opposite trend.}. The results reported here also support the claim that lexical metrics outperform LM-based ones\footnote{\cite{mitchell2015quantifying, just2019coherence, just2020modeling, hitczenko2021understanding, aich2022towards, girard2022computational}}. The only partial contradiction with the cross-methodological literature \citep{argolo2023burnishing} is in the fact that for both samples graph-based metrics clearly outperformed LM-based ones. The results of this study were more similar to what has been reported for the detection of group difference by \citet{morgan2021natural}.
+
+All in all, the results of the present study are largely in line with cross-methodological literature but suggest that some graph-based metrics may be stronger than is commonly reported in detecting symptom severity.
+
+% German synt > graph > lexical > LM; t-test == mean sent len corr
+% Overall, on the German sample, syntactic metrics showed most promise, taking into account mean sentence length baseline. Graph-based and lexical metrics seemed to be to some significant extent explaining the same effects as mean sentence length, yet outperformed this baseline in some cases. Finally, LM was overall the least reliable group, with weak correlations, barely ever outperforming mean sentence length. 
+
+% Russian verbosity > graph > syntactic > other lexical > LM
+% On the Russian sample, verbosity was the most robust though not the strongest metric, but otherwise, the tested graph-based metrics outperformed the lexical and syntactic ones, and LM-based ones were by far the weakest.
+
+% Synt > LM
+% The most widely used groups are language model-based methods and syntactic methods. Table \ref{tab:comparison:LM-Synt} summarizes the results reported by studies comparing some LM-based to some syntactic methods. Some studies find both groups efficient in differentiating between the groups \citep{bar2019semantic} or correlating with clinical scales \citep{argolo2023burnishing}, and others find that neither group of methods can efficiently distinguish CHR from controls \citep{haas2020linking} or assess CHR symptom severity \citep{bedi2015automated, corcoran2018prediction}. Some also find mixed results with only some metrics from both groups functioning well in identifying group differences \citep{tang2021natural} or correlating with clinical scales \citep{rezaii2019machine, bilgrami2022construct}. The majority of studies that compare these two groups of methods find syntactic methods more successful than LM-based methods both in differentiating between the groups\footnote{\cite{mitchell2015quantifying, iter2018automatic, corcoran2018prediction, just2020modeling, morgan2021natural, bilgrami2022construct, argolo2023burnishing}} and in predicting various clinical scales \citep{iter2018automatic, liebenthal2022linguistic, jeong2023exploring}, with very few exceptions \citep{rezaii2019machine}.
+
+% Lexical > LM
+% As shown in table \ref{tab:comparison:LM-Lex}, quite a few studies compare some LM-based to some lexical methods with similar results. While some find both groups efficient in predicting clinical scales \citep{vail2018toward}, many report neither of these approaches being efficient for CHR populations \citep{hitczenko2021understanding, argolo2023burnishing}. Similarly, many find lexical methods more efficient than LM-based ones both in differentiating between the groups \citep{mitchell2015quantifying, just2019coherence, just2020modeling, aich2022towards} and in assessing symptom severity \citep{girard2022computational, hitczenko2021understanding}, again with some exceptions \citep{voppel2023semantic}.
+
+% Lexical = Synt
+% Table \ref{tab:comparison:Lex-Synt} compares lexical and syntactic methods with some studies successfully using both approaches \citep{mitchell2015quantifying, just2020modeling, jeong2023exploring} and some reporting no effect with either \citep{liang2022widespread}. Overall, neither approach can be deemed better, as some report lexical methods being more effective than syntactic \citep{gupta2018automated, rezaii2019machine}, while others observe the opposite trend \citep{schneider2023syntactic, argolo2023burnishing}.
+
+% Graph =< Synt >= LM
+% Finally, Table \ref{tab:comparison:Graph-Synt-LM} compares graph methods to syntactic and LM-based ones. Most studies report graph-based methods being equally successful in differentiating between groups as syntactic methods \citep{spencer2021lower, morgan2021natural, nettekoven2023semantic}, though \citet{argolo2023burnishing} find better success with syntactic methods than graph-based ones in predicting symptom severity. As for LM-based methods, \citet{morgan2021natural} report limited success as compared to graph-based methods for finding group differences, while \citet{argolo2023burnishing} report the opposite pattern for predicting symptom severity.
+
+% It seems that negative symptoms are also more prevalent in the analyzed samples and can generally be approximated more robustly than positive symptoms. This could be because negative symptoms may occur before positive ones in the course of a psychotic disorder \citep{just2023validation}.
+
+
+% GERMAN
+
+% Mean sentence length could only serve as a moderate baseline on the negative scales and PANSS total score. The rate of PART was correlated with length but consistently outperformed this baseline, and correlated positively with all the scales but PANSS positive. Four graph metrics, LCC, LSC, N, and E correlated with length but consistently outperformed it, negatively correlating with all but the two positive symptom scales. LTR showed weak positive correlation patterns, as it only outperformed mean sentence length on general PANSS, an for negative MALTR correlation the only such scale was total SAPS score. Averaged w2v local coherence, which was correlated with length, barely correlated with general PANSS scale and was barely above mean sentence length in the negative correlation with PANSS total score. Averaged w2v second order coherence was similarly barely above mean sentence length on the negative correlation with PANSS total score. On the negative scales, where mean sentence length served as a reasonable baseline, all w2v metrics were below it. Maximum sentence length barely outperformed mean sentence length on SANS total but on no other scale.
+
+% As negative symptoms predominated in the German sample, it was unsurprising that the performance was overall better on the negative and general symptom scales, with the only exception of AUX rate. As could be expected, more pronounced patters could be seen on SANS and SAPS than on the corresponding PANSS subscales. Overall, on the German sample, syntactic metrics showed most promise, taking into account mean sentence length baseline. Graph-based and lexical metrics seemed to be to some significant extent explaining the same effects as mean sentence length, yet outperformed this baseline in some cases. Finally, LM was overall the least reliable group, with weak correlations, barely ever outperforming mean sentence length. 
+
+% For all the metrics, the t-test effect size corresponds quite closely with to the strength and to the direction of the correlation with mean sentence length. The mean sentence length itself also served as a very strong baseline for t-test, outperformed, but not significantly so, only by maximum and standard deviation in mean sentence length.
+
+% RUSSIAN
+
+% The number of words correlated negatively with all PANSS scales and was also predictive of TD severity. LTR, being inversely related to the word count, performed similarly but with the opposite direction, correlating positively with all PANSS scales, yet less strongly than the simple word count. The number of sentences on average correlated negatively with all PANSS scales but the positive. Interestingly, the number of parallel edges, was on average slightly above baseline for the positive PANSS subscale. On the Russian sample, the mean sentence length did not, on average, serve as a reasonable baseline, because the differences were more pronounced in the number of sentences and words, rather than the length of sentences, as discussed above (\ref{sec:results:clinical:sample_length}). LCC, LSC, N, and E consistently outperformed this weak baseline and correlated negatively with all PANSS scales. The rate of PART correlated above baseline for all PANSS scales but the general. The standard deviation in mean sentence length was, on average, barely above baseline in predicting TD severity. 
+
+% Though there were some interactions between the scales and the metrics, the best-performing metrics showed similar results across scales, and the correlation direction was also the same.
+
+% On the Russian sample, verbosity was the most robust though not the strongest metric, but otherwise, the tested graph-based metrics outperformed the lexical and syntactic ones, and LM-based ones were by far the weakest.
+
+%-----------------------------------
+%	section 6
+%-----------------------------------
+\section{Limitations}
+\label{sec:discussion:limitations}
+
+The present study has several important limitations. 
+
+First of all, like in many studies in the field, the sample size for both languages is rather small, with 59 and 31 NAP patients in German and Russian samples, respectively. It is still larger than the mode sample size of 20 patients, yet it is not large enough to reliably detect small effects.
+
+Secondly, there are quite a few differences between the two samples. The tasks used to elicit the texts are different between the Russian and German samples and some substantial part of the difference between the results for the two languages may be attributed to this cause, as the size of the difference is often comparable to that of the difference between the tasks within the Russian sample. Further research is required to separate and compare the size of the difference between tasks in one language and between one task cross-linguistically. Then, the target scales used to assess symptom severity only overlap partially, which renders impossible a cross-linguistic validation of some of the results. Additionally, there is a difference in symptom severity between the samples, the positive symptoms being significantly less prominent in the German sample. Because of this low level of positive symptoms, little can be said about the cross-linguistic reliability of positive symptom detection, as they could, for the most part, only be identified on the Russian sample. More research on dedicated groups showing negative, positive, and mixed symptoms could shed more light on this issue. There was also a difference in the gender balance, with the Russian sample skewing towards females, while the German sample was more balanced. This, however, should not significantly influence the results presented here, as there was no difference between the sexes in any of the metrics, or target and control characteristics. The German sample was significantly older than the Russian one, but the metrics in the two samples did not seem to be much correlated with age, and between the groups in both samples the age was comparable.
+
+Thirdly, there are limitations to the metrics selection and analysis used in the study. On the one hand, the selection of metrics was quite limited, especially for the lexical metrics, making the conclusions regarding this group less reliable. On the other hand, due to the very high number of comparisons, statistical significance would not have been a useful indicator of performance. Nevertheless, the bootstrapping procedure used here is not a perfect solution, and the reported results rely on a somewhat arbitrary correlation cutoff.
+
+Overall, however, these limitations are not likely to render the results presented in the study generally unreliable.
+
+
+%-----------------------------------
+%	section 7
+%-----------------------------------
+\section{Conclusion}
+\label{sec:discussion:conclusion}
+
+The present study is a cross-linguistic benchmarking of many common NLP methods used for psychosis detection.
+
+% - графовые метрики топчик (работают те же методы что reported before)
+% - простые лексические и некоторые синтаксические норм но менее консистентно между исследованиями
+% - лмки не работают в общем-то что бы там ни писали 
+
+% which metrics work best
+In this work, several groups of methods were compared, and the general patterns in their relative performance were mostly in accordance with the cross-methodological research in the field. The results obtained here indicate that co-occurrence graph-based metrics are the most reliably correlated with symptom severity and are also most in line with the previous results, performing in some cases even better than what was reported before. The lexical and syntactic methods tested in this work performed somewhat worse and were not as well reproducible neither between the two samples nor with respect to the previous literature, the results of which have also been mixed. Finally, the LM-based metrics barely performed at all, and they were also clearly the least reliable and least reproducible group of metrics in the field.
+
+% which metrics work on both languages
+% which metrics work across tasks // models
+% which metrics outperform the simplest baselines (word count, sentence count, mean sentence length)
+Several graph-based metrics, namely, the number of nodes and edges, as well as the sizes of the largest connected and strongly connected component, despite being correlated with mean sentence length, outperformed this baseline, as well as word count, for both languages and showed consistent results across the tasks. Similarly, PART rate correlated positively with the psychiatric scales for both samples, outperforming sentence length for both languages, as well as outperforming word count on the German but not the Russian sample. The lemma-token ratio and moving average lemma-token ratio were much weaker, sometimes performing worse than the baseline, especially on the German sample, where it was stronger. On the German sample mean sentence length was a stronger baseline than word count or sentence count, while the opposite was true on the Russian sample.
+
+% which metrics work across tasks // models // langugaes
+% - большая разница и между языками и между заданиями
+% - разница между заданиями сравнима с разницей между языками 
+% - есть разница чисто между языками (направление корреляций берта), POS rate efficiencies
+The present work demonstrated a large difference in relative metric performance on different elicitation tasks, even of the same task type, as well as between the languages. Generally, the size of this difference was comparable for different tasks within one language and between different tasks for different languages. Although for some metrics, such as POS rates, the cross-linguistic differences in performance could be anticipated, in the present study, these differences were still comparable to cross-task ones. On the contrary, for LM-based metrics, there were clear differences in the performance that could only be attributed to the differences either between the languages or between the tools available for them, and not to the difference between the tasks. For instance, the direction of correlation for the BERT-based metrics differed between the languages, but not between the tasks within one language, with BERT pseudo-perplexity proving a very strong metric for the German, but not the Russian sample. Moreover, the patterns of length-dependence of the LM-based metrics also differed between the two languages. All in all, both cross-model and cross-linguistic differences may contribute to the lack of cross-linguistic replicability for LM-based metrics, and the results of the present study suggest that cross-model differences play a more important role.
+
+% which metrics are associated with mean sentence length length
+The exploration of the length-dependence of the metrics suggests that many metrics do depend significantly on sentence length and at least a part of their explanatory power comes from this dependence. Consequently, further research in the field should test sentence length and the number of sentences as baseline metrics, control other metrics for them, and account for them in explanatory models.
+
+% good metrics work on all scales
+The present study found no definitive tendencies in any metric to be better suited for the identification of positive rather than negative symptoms or vice versa. Instead, well-performing metrics tended to perform across all symptom scales. Further, more targeted research on separate positive and negative symptom populations is required to explore any such patterns.
+
+% -  простые метрики лучше сложных и в том числе имеет смысл смысл сравнивать с verbosity (both as n sents and sent len)
+To conclude, the benchmarking conducted in the present study indicates that the simplest metrics, such as mean sentence length, word count, and unique lemma count, provide a strong baseline that other, more complex metrics can rarely beat.

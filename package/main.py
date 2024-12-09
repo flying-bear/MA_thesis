@@ -139,13 +139,14 @@ class TextData:
             sent_word_for_vectors = []
             sent_vectors_w2v = []
             for token in sent:
-                if stopwords and token.text.lower() in stopwords:
+                if token.pos_ == 'PUNCT' or (stopwords and token.text.lower() in stopwords):
                     continue
                 self.words.append(token.text)
                 self.lemmas.append(token.lemma_)
                 self.pos.append(token.pos_)
-                if token.pos_ not in ['PUNCT', 'NUM']:
-                    # filter out unvectorizable tokens
+                sent_tokens.append(token.text)
+                if token.pos_ != 'NUM':
+                    # filter out unvectorizable numerical tokens
                     if token.is_oov:
                         self.oov.append(token.text)
                     else:
@@ -156,7 +157,6 @@ class TextData:
                         self.word_vectors.append(token.vector)
                         self.word_for_vectors.append(token.text)
                         self.word_vectors_w2v.append(w2v_vec)
-                sent_tokens.append(token.text)
             if sent_vectors:
                 # filter out empty sentences
                 self.sent_word_vectors.append(sent_vectors)
@@ -428,7 +428,7 @@ def main():
     pth = '/Users/galina.ryazanskaya/Downloads/thesis?/code?/'
     df = pd.read_csv(pth + 'rus_transcript_lex_by_task_with_dots.tsv', sep='\t', index_col=0)
     config = Config(lang='ru', stopwords=[])
-    new_df = process_dataframe(df, config)  # , not_average=['preprocessed_transcript'])
+    new_df = process_dataframe(df, config)
 
     with open(pth + 'processed_values/ru_both.tsv', 'w') as f:
         f.write(new_df.to_csv(sep='\t'))

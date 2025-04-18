@@ -5,4 +5,5 @@ The folder [package](https://github.com/flying-bear/MA_thesis/tree/main/package)
 The folder [latex](https://github.com/flying-bear/MA_thesis/tree/main/latex) contains the latex for [the report](https://github.com/flying-bear/MA_thesis/blob/main/thesis.pdf).
 Finally, the `preprocess.ipynb` files contain the transcript preprocessing, the `scores.ipynb` normalize the psychosocial data, while `analyze.ipynb` contain the analysis of the metric for each langugae. `images_for_paper.ipynb` contains the visualisations and additional analysis performed for the paper. 
 
-The detailed result values are available as [an excel table](https://github.com/flying-bear/MA_thesis/blob/main/result_values.xlsx).
+The detailed bootsraped result values are available as [an excel table](https://github.com/flying-bear/MA_thesis/blob/main/result_values.xlsx).
+The raw sample mean values grouped by diagnosis are available as [a separate excel table](https://github.com/flying-bear/MA_thesis/blob/main/raw_sample_means.xlsx).
